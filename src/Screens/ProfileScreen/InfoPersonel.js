@@ -3,7 +3,7 @@
 import {View, Keyboard, KeyboardAvoidingView, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { height} from '../../utils/Dimension';
+import { height, width} from '../../utils/Dimension';
 import { Formik } from 'formik';
 import { Input } from '../../components/Input';
 import { Text } from '../../components/Text';
@@ -12,11 +12,10 @@ export const screenWidth = Math.round(Dimensions.get('window').width);
 export const screenHeight = Math.round(Dimensions.get('window').height);
 const InfoPersonel = () => {
   return (
-    <TouchableWithoutFeedback
+    <TouchableWithoutFeedback style={{backgroundColor:'white'}}
     onPress={()=>{Keyboard.dismiss();}}>
       <KeyboardAvoidingView style={styles.container} />
-      <Formik>
-        <View>
+        <View style={{backgroundColor:'#ffffff'}}>
                             <View
                                 style={{
                                     flexDirection: 'row',
@@ -37,19 +36,22 @@ const InfoPersonel = () => {
                                         // onBlur={props.handleBlur('firstName')}
                                         borderColor="black"
                                         label="Nom"
+                                        labelColor={'red'}
                                         labelContainerStyle={{
                                             alignSelf: 'flex-start',
+                                            
                                         }}
                                         style={{ color: 'black' }}
                                     />
-                                            <Text
+                                          {/* verification input value */}
+                                            {/* <Text
                                                 text={'first name error'}
                                                 colorText="signUpErr"
                                                 style={{ fontSize: 11 }}
                                                 containerStyle={{
                                                     alignItems: 'flex-start',
                                                 }}
-                                            />
+                                            /> */}
                                 </View>
                                 <View>
                                     <Input
@@ -61,19 +63,20 @@ const InfoPersonel = () => {
                                         containerStyle={{ alignSelf: 'center' }}
                                         borderColor="black"
                                         label="Prenom"
+                                           labelColor={'red'}
                                         labelContainerStyle={{
                                             alignSelf: 'flex-start',
                                         }}
                                         style={{ color: 'black' }}
                                     />
-                                            <Text
+                                            {/* <Text
                                                 text={'last name text'}
                                                 colorText="signUpErr"
                                                 style={{ fontSize: 11 }}
                                                 containerStyle={{
                                                     alignItems: 'flex-start',
                                                 }}
-                                            />
+                                            /> */}
 
                                 </View>
                             </View>
@@ -83,15 +86,16 @@ const InfoPersonel = () => {
                                 borderColor="black"
                                 value={'tunisie'}
                                 label="Pays"
+                                labelColor={'red'}
                                 labelContainerStyle={styles.labelStyle}
                                 style={{ color: 'black' }}
                             />
-                                <Text
+                                {/* <Text
                                     text={'country text'}
                                     containerStyle={styles.errorStyle}
                                     style={{ fontSize: 10 }}
                                     colorText="signUpErr"
-                                />
+                                /> */}
 
                             <Input
                                 size="large"
@@ -99,16 +103,17 @@ const InfoPersonel = () => {
                                 value={'sousse'}
                                 borderColor="black"
                                 label="Ville"
+                                labelColor={'red'}
                                 labelContainerStyle={styles.labelStyle}
                                 style={{ color: 'black' }}
                             />
 
-                                <Text
+                                {/* <Text
                                     text={'city text'}
                                     colorText="signUpErr"
                                     style={{ fontSize: 11 }}
                                     containerStyle={styles.errorStyle}
-                                />
+                                /> */}
 
                             <Input
                                 size="large"
@@ -117,16 +122,17 @@ const InfoPersonel = () => {
                                 value={'gouadriaafar@gmail.Com'}
                                 borderColor="black"
                                 label="Email"
+                                labelColor={'red'}
                                 labelContainerStyle={styles.labelStyle}
                                 style={{ color: 'black' }}
                             />
 
-                                <Text
+                                {/* <Text
                                     text={'email text'}
                                     colorText="signUpErr"
                                     style={{ fontSize: 11 }}
                                     containerStyle={styles.errorStyle}
-                                />
+                                /> */}
 
                             <View style={styles.buttonContainer}>
                                 <Button
@@ -137,8 +143,9 @@ const InfoPersonel = () => {
                                     onPress={console.log('update')}
                                 />
                             </View>
-                        </View>
-      </Formik>
+                              <View style={{marginTop:130 ,position:'relative'}} />
+        </View>
+
 
       </TouchableWithoutFeedback>
   );
@@ -147,8 +154,7 @@ const InfoPersonel = () => {
 export default InfoPersonel;
 const styles = StyleSheet.create({
   container: {
-        height: screenHeight,
-        width: screenWidth,
+        height: screenHeight * 0.11,
         backgroundColor: 'white',
         flexDirection: 'column',
     },
