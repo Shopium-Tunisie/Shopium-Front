@@ -1,0 +1,11 @@
+{
+    "cSpell.enableFiletypes": [
+        "groovy",
+        "ignore"
+    ],
+    "cSpell.words": [
+        "signin"
+    ],
+    "cSpell.language": "en,en-US,en-GB",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
