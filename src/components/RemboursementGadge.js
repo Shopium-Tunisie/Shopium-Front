@@ -29,7 +29,7 @@ const RemboursementGadget = ({data}) => {
   return (
     <View style={styles.container}>
       <Icon
-        name="primitive-dot"
+        name="dot-fill"
         size={16}
         color={Color}
         style={styles.square}
@@ -38,16 +38,17 @@ const RemboursementGadget = ({data}) => {
       <Text
         text={data.item}
         weight="bold"
+        colorText={'black'}
         style={{fontSize: FONTSIZE, textAlign: 'left'}}
       />
       <Text text={data.type} colorText="grey" style={{textAlign: 'left'}} />
       <View style={styles.thirdChild}>
-        <Text text={data.text} style={{textAlign: 'left'}} />
-        <Text text={data.amount} weight="bold" />
+        <Text text={data.text} style={{textAlign: 'left'}} colorText={'black'} />
+        <Text text={data.amount} weight="bold" colorText={'black'} />
       </View>
       <View style={styles.lastChild}>
-        <Text text={data.state} style={{color: Color, textAlign: 'left'}} />
-        <Text text={data.date} />
+        <Text text={data.state} style={{color: Color, textAlign: 'left'}} colorText={Color} />
+        <Text text={data.date} colorText={'grey'} />
       </View>
     </View>
   );
