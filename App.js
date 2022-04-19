@@ -32,6 +32,7 @@ import Notification from './src/Screens/MainScreens/Notification';
 import ProductDetail from './src/Screens/MainScreens/ProductDetail';
 import PromosScreen from './src/Screens/MainScreens/PromoScreen';
 import ProductReview from './src/Screens/MainScreens/ProductReview';
+import ProductsProvider from './src/tools/ProductContext';
 const RootStack = createNativeStackNavigator();
 
   const App = ({route})=>{
@@ -66,6 +67,7 @@ const RootStack = createNativeStackNavigator();
 // },[]);
     return (
     isFirstLaunch !== null && (
+      <ProductsProvider>
       <NavigationContainer screenOptions={{}}>
       <RootStack.Navigator  screenOptions={{headerShown: false}}>
           {showSplashScreen ? (
@@ -81,6 +83,7 @@ const RootStack = createNativeStackNavigator();
        <RootStack.Screen name="home" component={TabNavigation}/>
       </RootStack.Navigator>
       </NavigationContainer>
+      </ProductsProvider>
       )
     // <Provider store={store}>
     //   <Route/>

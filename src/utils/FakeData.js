@@ -81,7 +81,7 @@ export const textOptions = [
     text: "Breathe, breathe in the air , Don't be afraid to care , leave but dont leave , look around Choose Your own ground",
   },
   {
-    text: 'Lorem Ipsum 2 2 2 2',
+    text: 'Pariatur minim non ipsum officia magna cupidatat enim reprehenderit ipsum culpa laboris ad. Magna est veniam aliqua amet.',
   },
   {
     text: "Breathe, breathe in the air , Don't be afraid to care , leave but dont leave , look around Choose Your own ground",

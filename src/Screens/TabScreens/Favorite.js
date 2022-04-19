@@ -1,18 +1,20 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import { View, Text, SafeAreaView} from 'react-native';
 import React from 'react';
-import { width } from '../../utils/Dimension';
-import { useProductsStateValue } from '../../tools/ProductContext';
+import {View, Text, SafeAreaView, StatusBar} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {View as CusView} from 'react-native-animatable';
-import { FlatList } from 'react-native-gesture-handler';
-import { StatusBar } from 'react-native';
+import {width} from '../../utils/Dimension';
+import {useProductsStateValue} from '../../tools/ProductContext';
 import Product from '../../components/Product';
+
 const ITEMWIDTH = width * 0.45;
 const ITEMHEIGHT = ITEMWIDTH * 1.4;
+
 export const DELAY = 250;
-const FavorieScreen = () => {
-     const {products} = useProductsStateValue();
+
+const Favorite = () => {
+  const {products} = useProductsStateValue();
 
   const filteredData = products.filter(item => item.isLiked === true);
   return (
@@ -45,4 +47,4 @@ const FavorieScreen = () => {
   );
 };
 
-export default FavorieScreen;
+export default Favorite;
