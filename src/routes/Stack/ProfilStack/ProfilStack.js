@@ -13,6 +13,9 @@ import EmplacementScreen from '../../../Screens/ProfileScreen/EmplacementScreen'
 import RibScreen from '../../../Screens/ProfileScreen/RibScreen';
 import PayPalScreen from '../../../Screens/ProfileScreen/PaypalScreen';
 import PosteScreen from '../../../Screens/ProfileScreen/PostScreen';
+import CodeScreen from '../../../Screens/ProfileScreen/CodeScreen';
+import Parrainage from '../../../Screens/ProfileScreen/Parrainage';
+import Rembourser from '../../../Screens/ProfileScreen/Rembourser';
 const Stack = createStackNavigator();
 const ProfilStack = () => {
   return (
@@ -36,6 +39,9 @@ const ProfilStack = () => {
        <Stack.Screen name="PayPalScreen" component={PayPalScreen}/>
        <Stack.Screen name="PosteScreen" component={PosteScreen}/>
        <Stack.Screen name="emplacement" component={EmplacementScreen}/>
+       <Stack.Screen name="EnterCode" component={CodeScreen}/>
+       <Stack.Screen name="Parrainer" component={Parrainage}/>
+       <Stack.Screen name="Rembourser" component={Rembourser}/>
     </Stack.Navigator>
   );
 };

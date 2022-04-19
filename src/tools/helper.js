@@ -46,7 +46,7 @@ export const widthOptions = {
 };
 
 export const lorem =
-  'is simply dummy text of the printing and typesetting industry. Lorem in ffoook';
+  'Nostrud quis ullamco id minim nisi.';
 
 export const googleLink =
   'https://yt3.ggpht.com/a/AATXAJysEynEghsvVEHdcjVYfdaDfrimWMiTvtuEVKYTGJM=s900-c-k-c0xffffffff-no-rj-mo';
