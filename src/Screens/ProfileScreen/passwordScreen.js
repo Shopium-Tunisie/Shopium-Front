@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+/* eslint-disable prettier/prettier */
+import {View, Text} from 'react-native';
+import React from 'react';
 
 const PasswordScreen = () => {
   return (
     <View>
       <Text>PasswordScreen</Text>
     </View>
-  )
-}
+  );
+};
 
-export default PasswordScreen
+export default PasswordScreen;

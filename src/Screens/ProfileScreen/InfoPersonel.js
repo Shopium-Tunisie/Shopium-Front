@@ -130,7 +130,7 @@ const InfoPersonel = () => {
                                 {/* <Text
                                     text={'email text'}
                                     colorText="signUpErr"
-                                    style={{ fontSize: 11 }}
+                                    style={{ fontSize: 11 }}    
                                     containerStyle={styles.errorStyle}
                                 /> */}
 

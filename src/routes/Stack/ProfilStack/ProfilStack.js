@@ -6,11 +6,13 @@ import ProfilScreen from '../../../Screens/TabScreens/ProfilScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Parametre from '../../../Screens/ParametreScreen';
 import ParametreScreen from '../../../Screens/ParametreScreen';
-import RipScreen from '../../../Screens/ProfileScreen/RipScreen';
 import passwordScreen from '../../../Screens/ProfileScreen/passwordScreen';
 import InfoPersonel from '../../../Screens/ProfileScreen/InfoPersonel';
 import PasswordScreen from '../../../Screens/ProfileScreen/passwordScreen';
 import EmplacementScreen from '../../../Screens/ProfileScreen/EmplacementScreen';
+import RibScreen from '../../../Screens/ProfileScreen/RibScreen';
+import PayPalScreen from '../../../Screens/ProfileScreen/PaypalScreen';
+import PosteScreen from '../../../Screens/ProfileScreen/PostScreen';
 const Stack = createStackNavigator();
 const ProfilStack = () => {
   return (
@@ -30,7 +32,9 @@ const ProfilStack = () => {
       <Stack.Screen name="parametre" component={ParametreScreen}/>
       <Stack.Screen name="infoPersonel" component={InfoPersonel}/>
       <Stack.Screen name="password" component={PasswordScreen}/>
-       <Stack.Screen name="rip" component={RipScreen}/>
+       <Stack.Screen name="RibScreen" component={RibScreen}/>
+       <Stack.Screen name="PayPalScreen" component={PayPalScreen}/>
+       <Stack.Screen name="PosteScreen" component={PosteScreen}/>
        <Stack.Screen name="emplacement" component={EmplacementScreen}/>
     </Stack.Navigator>
   );
