@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    borderColor: '#c8cfca',
+    borderColor: '#EDEDED',
     marginTop: 6,
     alignSelf: 'center',
     borderWidth: 1,

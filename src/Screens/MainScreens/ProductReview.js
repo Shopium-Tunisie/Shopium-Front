@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 /* eslint-disable react-native/no-inline-styles */
-import {View, Text, StyleSheet, Keyboard, FlatList} from 'react-native';
+import {View,  StyleSheet, Keyboard, FlatList} from 'react-native';
 import React, { useState } from 'react';
 import UserReview from '../../components/UserReview';
 import { Overlay, Rating } from 'react-native-elements';
@@ -11,6 +11,8 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import ProductSwiper from '../../components/ProductSwiper';
 import { FAKEDATA } from '../../utils/FakeData';
+import IconFeather from 'react-native-vector-icons/Feather';
+import { Text } from '../../components/Text';
 
 const images = {
   first:
@@ -56,7 +58,8 @@ const OverLay = ({ setVisibleOverLay, visibleOverLay, setComment }) => (
       <Text
         text="Merci a donner votre avis"
         weight="bold"
-        style={{ fontSize: 22 }}
+        colorText={'black'}
+        style={{ fontSize: 22}}
         containerStyle={{
           width: '70%',
           alignSelf: 'center',
@@ -78,7 +81,7 @@ const OverLay = ({ setVisibleOverLay, visibleOverLay, setComment }) => (
           justifyContent: 'flex-start',
         }}
         maxLength={120}
-        height={80}
+        height={90}
         multiLine
         onChangeText={(text) => {
           setComment(text);
@@ -105,7 +108,7 @@ const ProductReview = ({route,navigation}) => {
       }}>
       <ProductSwiper images={images} />
       <View style={styles.icon}>
-        <Icon
+        <IconFeather
           name="edit"
           size={24}
           color="white"
@@ -142,7 +145,7 @@ const ProductReview = ({route,navigation}) => {
             <Text
               text="Merci a donner votre avis"
               weight="bold"
-              style={{ fontSize: 22 }}
+              style={[styles.text,{ fontSize: 22,color:'black' }]}
               containerStyle={{
                 width: '70%',
                 alignSelf: 'center',
@@ -206,5 +209,10 @@ const styles = StyleSheet.create({
     bottom: 25,
     right: 25,
     zIndex: 1,
+  },
+  text:{
+    textAlign:'center',
+    textShadowColor:'red',
+    color:'black',
   },
 });

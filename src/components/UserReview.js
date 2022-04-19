@@ -20,13 +20,13 @@ const UserReview = ({image, userName, ratingValue, date, reviewText}) => {
           <Text
             text={userName}
             weight="bold"
+            colorText={'black'}
             style={{fontSize: 18, textAlign: 'left'}}
           />
 
           <View
             style={{
               flexDirection: 'row',
-
               alignItems: 'center',
             }}>
             <Rating
@@ -38,11 +38,11 @@ const UserReview = ({image, userName, ratingValue, date, reviewText}) => {
               ratingColor="#FBBB00"
               tintColor="white"
             />
-            <Text text={ratingValue} />
+            <Text text={ratingValue} colorText={'black'} />
           </View>
         </View>
         <View style={{height: '100%', justifyContent: 'center'}}>
-          <Text text={date} />
+          <Text text={date} colorText={'grey'} />
         </View>
       </View>
       <View style={styles.secondChild}>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   container: {
     width: '95%',
     height: 115,
-    borderColor: '#c8cfca',
+    borderColor: '#EDEDED',
     borderWidth: 1,
     borderRadius: 6,
     flexDirection: 'column',
