@@ -1,18 +1,21 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 // import { useNavigation } from "@react-navigation/native";
 import {list, deviseList} from '../utils/FakeData';
 import DropDown from '../components/DropDown';
 import ParametresTouchables from '../components/ParametresTouchables';
+import { Button } from '../components/Button';
+import { height } from '../utils/Dimension';
+import AuthContext from '../tools/AuthContext';
 
 
-const ParametreScreen = ({navigation}) => {
+const ParametreScreen = ({navigation,route}) => {
   const [transferMethods, setTransferMethods] = useState(list);
   const [moneyList, setMoneyList] = useState(deviseList);
   const [transferMethod, setTransferMethod] = useState(transferMethods[0]);
-
+  const { user } = route.params;
   const handleToggle = i => {
     let arr = moneyList;
     arr[i].selected = !arr[i].selected;
@@ -22,14 +25,14 @@ const ParametreScreen = ({navigation}) => {
   const handleTransferToggle = i => {
     setTransferMethod(transferMethods[i]);
   };
-
+  const {signOut} = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <ParametresTouchables
         text="Informations personnelle"
         secondText="******"
         onPress={() => {
-          navigation.navigate('infoPersonel');
+          navigation.navigate('infoPersonel',{user:user});
         }}
       />
       <ParametresTouchables
@@ -66,6 +69,12 @@ const ParametreScreen = ({navigation}) => {
         onPress={() => {
           navigation.navigate('emplacement');
         }}
+      />
+      <Button
+      title={'LOGOUT'}
+     size="medium"
+     theTextColor={'white'}
+     onPress={()=>signOut()}
       />
     </View>
   );

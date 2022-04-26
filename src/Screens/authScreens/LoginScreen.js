@@ -5,24 +5,21 @@
 /* eslint-disable no-catch-shadow */
 /* eslint-disable no-alert */
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Input} from '../../components/TextInput';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import Validations from '../../utils/Validations';
 import { showError, showSuccess } from '../../tools/helperFunction';
 // import actions from '../../Redux/actions';
 import TabNavigation from '../../routes/TabNavigation/tabNavigation';
+import AuthContext from '../../tools/AuthContext';
 
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading,setIsLoading] = useState(false);
-  //  const [state, setState] = useState({
-  //       isLoading: false,
-  //       email: '',
-  //       password: '',
-  //   });
+  const {signIn} = useContext(AuthContext);
 
   //   const updateState = (data) => setState(() => ({ ...state, ...data }));
   const isValidData = ()=>{
@@ -92,14 +89,15 @@ const LoginScreen = ({navigation}) => {
             iconName="email"
             label="Email"
             value={email}
-            onChangeText={(email) => setEmail(email)}
+            onChangeText={(text) => setEmail(text)}
             keyboardType="email-address"
           />
           <Input
             placeholder="Password"
             // iconName="lock-outline"
             value={password}
-            onChangeText={(password) => setPassword(password)}
+            onChangeText={(text) => setPassword(text)}
+            secure={true}
           />
           <Text onPress={()=>navigation.navigate('forgotPassword')}
             style={{
@@ -113,7 +111,7 @@ const LoginScreen = ({navigation}) => {
             Mot de passe oublié ?
           </Text>
            {/* <Button title="Se Connecter" onPress={handleSubmit} /> */}
-          <ButtonWithLoader text={'Se Connecter'} onPress={onLogin} isLoading={isLoading} />
+          <ButtonWithLoader text={'Se Connecter'} onPress={()=>signIn(email,password)} isLoading={isLoading} />
           <Text
             onPress={() => navigation.navigate('signup')}
             style={{

@@ -10,7 +10,7 @@ const HomeScreen = ({navigation})=> {
 return (
     <SafeAreaView style={styles.container}>
             <View style={styles.navbar}>
-                <Icon name="menu-outline" style={styles.menu_icon}size={30} />
+                <Icon name="menu-outline" style={styles.menu_icon}size={30}  />
                 <Image source={require('../../assets/images/logoHome.png')} resizeMode="contain" style={styles.logo} />
                 <Icon name="notifications" style={styles.notification} size={30}/>
             </View>

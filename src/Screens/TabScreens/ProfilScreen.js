@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import {View, StyleSheet, ScrollView, Modal, TouchableOpacity, ActivityIndicator} from 'react-native';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import IconFont from 'react-native-vector-icons/FontAwesome';
 import IconFont5 from 'react-native-vector-icons/FontAwesome5';
@@ -12,7 +12,13 @@ import Description from '../../components/Descreption';
 import ProfilBottomBtn from '../../components/ProfilBottomBtn';
 import SheetButton from '../../components/SheetButton';
 import { height } from '../../utils/Dimension';
-const ProfilScreen = ({navigation}) => {
+import AuthContext from '../../tools/AuthContext';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const ProfilScreen =  ({navigation,route}) => {
+    const {userToken} = useContext(AuthContext);
+    console.log(userToken);
+    const [user,setUser] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
     const functionCombined = (x) => {
         setModalVisible(!modalVisible);
@@ -22,6 +28,31 @@ const ProfilScreen = ({navigation}) => {
         setModalVisible(!modalVisible);
     };
     const { data, error, loading } = useState('');
+        useEffect(()=>{
+            const userInfo = async()=>{
+                 let userInf;
+                 try {
+                     const token = await AsyncStorage.getItem('token');
+                      console.log(token);
+                      const response = await axios.post('http://192.168.100.230:8000/me',{token});
+                    //   console.log(response.data.user);
+                      if (!response){
+                          console.log('error');
+                      } else {
+                          userInf = response.data.user;
+                            setUser(userInf);
+                          console.log(userInf);
+                      }
+
+
+                 } catch (error1) {
+                    console.log(error1);
+                 }
+                //  console.log('user', response);
+                //  setUser(response);
+             };
+             userInfo();
+        },[]);
   return (
        <ScrollView
        bounces={false}
@@ -32,7 +63,10 @@ const ProfilScreen = ({navigation}) => {
                     <Fragment>
                         <View >
                             <HeaderUserProfil
-                                onPress={() => navigation.navigate('parametre')}
+                                onPress={() => navigation.navigate('parametre',{user:user})}
+                                email={user.email}
+                                nom={user.nom}
+                                prenom={user.prenom}
                             />
                         </View>
                         <View style={[styles.secondChild]}>

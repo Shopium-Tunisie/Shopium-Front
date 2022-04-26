@@ -62,7 +62,7 @@ const OnboardingScreen = ({navigation})=>{
                     {
                         currentSlideIndex == slides.length - 1 ?
                         <View style={{height:50 }} >
-                        <TouchableOpacity style={{alignItems:'center'}} onPress={()=>navigation.navigate('login')} >
+                        <TouchableOpacity style={{alignItems:'center'}} onPress={()=>navigation.replace('login')} >
                             <Text style={{fontSize:16,fontWeight:'400', color:'white',backgroundColor:'#ED5351' ,borderRadius:22.5 ,width:130, height:45 , padding:10, paddingLeft:30  }}>Continuer</Text>
                         </TouchableOpacity>
                     </View> :

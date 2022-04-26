@@ -42,7 +42,7 @@ export const Input = ({
   return (
     <View style={[communContainerStyle, containerStyle]}>
       <TextInput
-        secureTextEntry={type === 'password'}
+        secureTextEntry={secure}
         placeholder={placeholder}
         onChangeText={onChangeText}
         style={[communInputStyle, style]}

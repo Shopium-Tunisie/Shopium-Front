@@ -8,10 +8,9 @@ import {ScrollView, View, FlatList, Text} from 'react-native';
 
 import {similarProducts as data} from '../../utils/FakeData';
 import CompleteFlatList from 'react-native-complete-flatlist';
-
-// import {useProductsStateValue} from '../../tools/context/ProductsContext';
 import {width} from '../../utils/Dimension';
 import Product from '../../components/Product';
+import { useProductsStateValue } from '../../tools/ProductContext';
 
 const ITEMWIDTH = width * 0.45;
 const ITEMHEIGHT = ITEMWIDTH * 1.4;
@@ -41,13 +40,13 @@ const PourVous = props => {
   );
 };
 const Tous = props => {
-//   const {products} = useProductsStateValue();
+  const {products} = useProductsStateValue();
 
   return (
     <View style={{flex: 1}}>
       <CompleteFlatList
         showsVerticalScrollIndicator={false}
-        // data={products}
+        data={products}
         showSearch={false}
         keyExtractor={item => item.id}
         contentContainerStyle={{

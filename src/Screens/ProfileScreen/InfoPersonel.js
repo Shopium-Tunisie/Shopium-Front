@@ -10,7 +10,8 @@ import { Text } from '../../components/Text';
 import { Button } from '../../components/Button';
 export const screenWidth = Math.round(Dimensions.get('window').width);
 export const screenHeight = Math.round(Dimensions.get('window').height);
-const InfoPersonel = () => {
+const InfoPersonel = ({navigation,route}) => {
+    const { user } = route.params;
   return (
     <TouchableWithoutFeedback style={{backgroundColor:'white'}}
     onPress={()=>{Keyboard.dismiss();}}>
@@ -31,7 +32,7 @@ const InfoPersonel = () => {
                                         // onChangeText={props.handleChange(
                                         //     'firstName'
                                         // )}
-                                        value={'farouk'}
+                                        value={user.nom}
                                         autoFocus
                                         // onBlur={props.handleBlur('firstName')}
                                         borderColor="black"
@@ -59,7 +60,7 @@ const InfoPersonel = () => {
                                         // onChangeText={props.handleChange(
                                         //     'lastName'
                                         // )}
-                                        value={'gouadria'}
+                                        value={user.prenom}
                                         containerStyle={{ alignSelf: 'center' }}
                                         borderColor="black"
                                         label="Prenom"
@@ -84,7 +85,7 @@ const InfoPersonel = () => {
                                 size="large"
                                 // onChangeText={props.handleChange('country')}
                                 borderColor="black"
-                                value={'tunisie'}
+                                value={user.ville}
                                 label="Pays"
                                 labelColor={'red'}
                                 labelContainerStyle={styles.labelStyle}
@@ -100,7 +101,7 @@ const InfoPersonel = () => {
                             <Input
                                 size="large"
                                 // onChangeText={props.handleChange('city')}
-                                value={'sousse'}
+                                value={user.pays}
                                 borderColor="black"
                                 label="Ville"
                                 labelColor={'red'}
@@ -119,7 +120,7 @@ const InfoPersonel = () => {
                                 size="large"
                                 // onChangeText={props.handleChange('email')}
                                 keyboardType="email-address"
-                                value={'gouadriaafar@gmail.Com'}
+                                value={user.email}
                                 borderColor="black"
                                 label="Email"
                                 labelColor={'red'}

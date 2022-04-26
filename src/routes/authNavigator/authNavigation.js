@@ -6,7 +6,9 @@ import SignUpScreen from '../../Screens/authScreens/SignUpScreen';
 import ForgotPassword from '../../Screens/authScreens/ForgotPassword';
 import Verification from '../../Screens/authScreens/Verification';
 import ResetPassword from '../../Screens/authScreens/ResetPassword';
-export default function authNavigation (Stack) {
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+const Stack = createNativeStackNavigator();
+const AuthNavigation = ()=> {
   return (
         <>
             <Stack.Screen
@@ -31,6 +33,8 @@ export default function authNavigation (Stack) {
             />
         </>
   );
-};
+}
+
+export default AuthNavigation;
 
 

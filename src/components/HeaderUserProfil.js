@@ -7,7 +7,7 @@ import {MaterialCommunityIcons, MaterialIcons} from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Description from './Descreption';
 const IMAGESIZE = width * 0.26;
-const HeaderUserProfil = ({onPress}) => {
+const HeaderUserProfil = ({onPress,email,nom,prenom}) => {
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -28,8 +28,8 @@ const HeaderUserProfil = ({onPress}) => {
         </View>
         </TouchableOpacity>
         <View>
-          <Text style={{marginHorizontal:width / 10,fontSize:17,fontWeight:'bold'}}> Gouadria Farouk </Text>
-          <Text style={{marginHorizontal:width / 19,fontSize:17,fontWeight:'400'}}> gouadriaafar@gamil.com </Text>
+          <Text style={{marginHorizontal:width / 10,fontSize:17,fontWeight:'bold'}}> {nom} {prenom} </Text>
+          <Text style={{marginHorizontal:width / 19,fontSize:17,fontWeight:'400'}}> {email} </Text>
           </View>
         </View>
     </ScrollView>
