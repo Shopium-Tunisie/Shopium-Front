@@ -34,7 +34,7 @@ const ProfilScreen =  ({navigation,route}) => {
                  try {
                      const token = await AsyncStorage.getItem('token');
                       console.log(token);
-                      const response = await axios.post('http://192.168.100.230:8000/me',{token});
+                      const response = await axios.post('http://192.168.1.4:8000/user/me',{token});
                     //   console.log(response.data.user);
                       if (!response){
                           console.log('error');
@@ -43,8 +43,6 @@ const ProfilScreen =  ({navigation,route}) => {
                             setUser(userInf);
                           console.log(userInf);
                       }
-
-
                  } catch (error1) {
                     console.log(error1);
                  }

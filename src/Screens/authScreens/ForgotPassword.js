@@ -7,6 +7,7 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { Dimensions } from 'react-native';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
+import { showError, showSuccess } from '../../tools/helperFunction';
 
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -17,15 +18,17 @@ const ForgotPassword = ({navigation}) => {
       }
       console.log(email);
       const {data} = await axios.post(
-        'http://192.168.135.229:8000/forgot-password',
+        'http://192.168.1.4:8000/user/forgot-password',
         {email},
       );
       console.log(data);
       console.log(data.id);
       console.log(data.token);
       if (data.success) {
+        showSuccess({message:'success, verifier votre email'});
         ToastAndroid.show(`${data.message}`, ToastAndroid.LONG);
       } else {
+        showError('error')
         ToastAndroid.show(`${data.message}`, ToastAndroid.LONG);
       }
       setEmail('');
@@ -51,7 +54,7 @@ const ForgotPassword = ({navigation}) => {
         />
       </View>
       <View style={{marginTop: 145}}>
-        <ButtonWithLoader text={"Envoyer"} onPress={SendButton} />
+        <ButtonWithLoader text={'Envoyer'} onPress={SendButton} />
       </View>
     </KeyboardAvoidingView>
   );

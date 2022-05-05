@@ -139,7 +139,7 @@ const App = ({route})=>{
       const authContext = useMemo(
          ()=>({
             signIn: async (email,password)=>{
-               const response = await axios.post('http://192.168.100.230:8000/signin',{email,password});
+               const response = await axios.post('http://192.168.1.4:8000/user/signin',{email,password});
               console.log('App singIn', response.data);
               if (response.data.success){
                 const userInfo = response.data;
@@ -153,7 +153,7 @@ const App = ({route})=>{
                dispatch({type:'SIGN_OUT'});
             },
             signUp: async (nom,prenom,ville,pays,email,password)=>{
-              const response =  await axios.post('http://192.168.100.230:8000/create',{nom,prenom,ville,pays,email,password});
+              const response =  await axios.post('http://192.168.1.4:8000/user/create',{nom,prenom,ville,pays,email,password});
               console.log('app sigUp',response.data);
               if (response.data.success){
                 const userInfo = response.data.user;

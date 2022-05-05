@@ -1,37 +1,127 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import {View, Text, Modal, TouchableWithoutFeedback, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
-import React, {Fragment, useState} from 'react';
+import {View, Text,StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import {height, width} from '../utils/Dimension';
-import {MaterialCommunityIcons, MaterialIcons} from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Description from './Descreption';
+import IconMat from 'react-native-vector-icons/MaterialIcons' ;
+import ActionSheet from 'react-native-actionsheet';
+import {launchImageLibrary,launchCamera}from 'react-native-image-picker';
 const IMAGESIZE = width * 0.26;
-const HeaderUserProfil = ({onPress,email,nom,prenom}) => {
-  const [visible, setVisible] = useState(false);
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
+import { LogBox } from 'react-native';
+/* toggle includeExtra */
+const includeExtra = true;
 
-  const chooseImage = fn => {
-    toggleOverlay();
-    fn();
+const options = {
+    title: 'Select Image',
+    type: 'library',
+    cropping: true,
+    options: {
+      maxHeight: 200,
+      maxWidth: 200,
+      selectionLimit: 0,
+      mediaType: 'photo',
+      includeBase64: false,
+      includeExtra,
+    },
+  };
+const optionsCam = {
+    title: 'Take Image',
+    type: 'capture',
+    cropping:true,
+    options: {
+      saveToPhotos: true,
+      mediaType: 'photo',
+      includeBase64: false,
+      includeExtra,
+    },
+  };
+const HeaderUserProfil = ({onPress,email,nom,prenom,photo}) => {
+  const [photoo,setPhoto] = useState();
+  useEffect(() => {
+      LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+  }, []);
+  let actionsheet = useRef();
+  const BUTTONS = ['Take Photo','Choose Photo Library','Cancel'];
+  const onClickAddImage = ()=>{
+    actionsheet.current.show();
+  }
+  const takePhotoFromCamera = async ()=>{
+try {
+  const image = await launchCamera(optionsCam);
+   setPhoto(image.assets[0].uri);
+   const formData = new FormData();
+   formData.append('file',{
+     uri:image.assets[0].uri,
+     type:image.assets[0].type,
+     name:image.assets[0].fileName,
+   });
+   console.log(formData.getAll());
+} catch (error) {
+  console.log({error:error});
+}
+  };
+  const takePhotoFromGallery = async()=>{
+    try {
+      const image = await launchImageLibrary(options);
+      setPhoto(image.assets[0].uri);
+       const formData = new FormData();
+        formData.append('file',{
+        uri:image.assets[0].uri,
+        type:image.assets[0].type,
+        name:image.assets[0].fileName,
+   });
+   console.log(formData[0].uri);
+    } catch (error) {
+        console.log({error:error});
+    }
+    //     ImagePicker.openPicker({
+      //   width: 200,
+      //   height: 200,
+      //   cropping: true
+      // }).then(image => {
+        //   console.log(image.path);
+        //   setPhoto(image.path);
+        // });
   };
   return (
     <ScrollView>
       <View style={Styles.container}>
-        <TouchableOpacity>
-          <Icon style={{position:'absolute', paddingLeft:'55%' }} color="#ffffff" name="dots-vertical" size={30}
+          <Icon style={{position:'absolute', paddingLeft:'90%' }} color="#ffffff" name="dots-vertical" size={30}
           onPress={onPress} />
         <View style={Styles.image}>
-            <Image source={require('../assets/images/avatar.jpg')} style={{height:90,width:90,borderRadius:80}} />
+        <TouchableOpacity onPress={onClickAddImage}>
+          <View style={Styles.press} >
+           <IconMat onPress={onClickAddImage} name ='mode-edit' color={"black"} size={25} />
+          </View>
+        </TouchableOpacity >
+            <Image source={{uri:photoo}} style={{height:90,width:90,borderRadius:80}}  resizeMode="cover" resizeMethod="scale"/>
         </View>
-        </TouchableOpacity>
         <View>
           <Text style={{marginHorizontal:width / 10,fontSize:17,fontWeight:'bold'}}> {nom} {prenom} </Text>
           <Text style={{marginHorizontal:width / 19,fontSize:17,fontWeight:'400'}}> {email} </Text>
           </View>
         </View>
+        <ActionSheet
+        ref={actionsheet}
+        title={'choose from  : '}
+        options={BUTTONS}
+        cancelButtonIndex={2}
+        useNativeDriver={true}
+        onPress={(index)=>{
+          switch (index){
+            case 0:
+              takePhotoFromCamera();
+            break;
+            case 1:
+              takePhotoFromGallery();
+            break;
+            default:
+            break;
+          }
+        }}
+        
+        />
     </ScrollView>
   );
 };
@@ -50,11 +140,20 @@ const Styles = StyleSheet.create({
     marginTop:40,
     borderColor: '#FFF',
     borderRadius: 85,
-    borderWidth: 3,
-    height: 100,
+    borderWidth: 1,
+    height: 90,
     marginBottom: 15,
-    width: 100,
-    padding:5,
+    width: 90,
+    },
+    press:{
+      borderRadius:100,
+      backgroundColor:'white',
+      height:30,
+      width:30,
+      position:'absolute',
+      marginTop:60,
+      marginLeft:30,
+      padding:2.5,
     },
 });
       // <View>

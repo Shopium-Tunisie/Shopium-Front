@@ -5,10 +5,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React,{useState,useRef,useEffect} from 'react';
-import {TouchableOpacityBase,View,StyleSheet,Text,KeyboardAvoidingView,TextInput,Dimensions,Button,Keyboard,ToastAndroid} from 'react-native';
+import {TouchableOpacityBase,View,StyleSheet,Text,KeyboardAvoidingView,TextInput,Dimensions,Keyboard,ToastAndroid, Button} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IconButton from 'react-native-vector-icons/dist/lib/icon-button';
 import { showSuccess } from '../../tools/helperFunction';
+import FlashMessage, {showMessage, hideMessage} from 'react-native-flash-message';
+import ButtonWithLoader from '../../components/ButtonWithLoader';
+// import { Button } from '../../components/Button';
 const inputs = Array(4).fill('');
 let newInputIndex = 0;
 const isObjectValid = (obj)=>{
@@ -49,11 +52,27 @@ const onSubmitOPT = async()=>{
     console.log(idUser);
     console.log(otp,['id',userId]);
    try {
-    const {data} = await axios.post('http://192.168.100.230:8000/verify-email', {otp, userId});
+    const {data} = await axios.post('http://192.168.1.4:8000/user/verify-email', {otp, userId});
     if (data.success){
-      showSuccess(`${data.message}`);
+      // showMessage({
+      //   type:'success',
+      //   message:`${data.message}`,
+      //   backgroundColor:'green',
+      //   position:'top',
+      // });
+       showMessage({
+            message: `${data.message}`,
+            type: 'success',
+          });
+      <FlashMessage position="top"/>;
       ToastAndroid.show(`${data.message}`,ToastAndroid.SHORT);
     } else {
+       showMessage({
+        type:'error',
+        message:`${data.error}`,
+        backgroundColor:'red',
+        position:'top',
+      });
        ToastAndroid.show(`${data.error}`,ToastAndroid.SHORT);
     }
      let token = data.token;
@@ -66,6 +85,11 @@ const onSubmitOPT = async()=>{
 };
   return  (
   <KeyboardAvoidingView  style={styles.root}>
+      <View style={{marginBottom:50 ,alignItems:'center'}}>
+        <Text  style={{fontSize:40,fontWeight:'bold',color:'blue'}}>
+          Vérfier Votre Compte
+        </Text>
+      </View>
       <Text style={styles.text}>
          Please Verify your Email , PIN has been sent to your Email.
         </Text>
@@ -79,10 +103,11 @@ const onSubmitOPT = async()=>{
               );
             })}
         </View>
-      <View style={{padding:20}}>
-          <Button title="Verifier" onPress={onSubmitOPT} style={styles.submitIcon}/>
+      <View style={{padding:30,marginTop:20}}>
+          <Button title="Verifier" onPress={onSubmitOPT} style={styles.submitIcon} />
       </View>
-          </KeyboardAvoidingView>);
+  </KeyboardAvoidingView>
+  );
 
 };
 const {width} = Dimensions.get('window');

@@ -1,17 +1,35 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import {View, Keyboard, KeyboardAvoidingView, StyleSheet, Dimensions} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { height, width} from '../../utils/Dimension';
 import { Formik } from 'formik';
 import { Input } from '../../components/Input';
 import { Text } from '../../components/Text';
 import { Button } from '../../components/Button';
+import axios from 'axios';
 export const screenWidth = Math.round(Dimensions.get('window').width);
 export const screenHeight = Math.round(Dimensions.get('window').height);
 const InfoPersonel = ({navigation,route}) => {
     const { user } = route.params;
+    const [nom,setNom] = useState('');
+    const [prenom,setPrenom] = useState('');
+    const [ville,setVille] = useState('');
+    const [pays,setPays] = useState('');
+    console.log(user._id);
+    const UpdateUsers = {
+        _id:user._id,
+        nom:nom,
+        prenom:prenom,
+        ville:ville,
+        pays:pays,
+    };
+    console.log({UpdateUsers:UpdateUsers});
+    const updateUser = async ()=>{
+        // const updateProfile = await axios.put('http://192.168.1.4:8000/user/update',{UpdateUsers});
+        // console.log(updateProfile);
+    };
   return (
     <TouchableWithoutFeedback style={{backgroundColor:'white'}}
     onPress={()=>{Keyboard.dismiss();}}>
@@ -29,9 +47,8 @@ const InfoPersonel = ({navigation,route}) => {
                                 <View>
                                     <Input
                                         size="normal"
-                                        // onChangeText={props.handleChange(
-                                        //     'firstName'
-                                        // )}
+                                        onChangeText={(nom)=>setNom(nom)
+                                        }
                                         value={user.nom}
                                         autoFocus
                                         // onBlur={props.handleBlur('firstName')}
@@ -61,6 +78,8 @@ const InfoPersonel = ({navigation,route}) => {
                                         //     'lastName'
                                         // )}
                                         value={user.prenom}
+                                        onChangeText={(prenom)=>setPrenom(prenom)
+                                        }
                                         containerStyle={{ alignSelf: 'center' }}
                                         borderColor="black"
                                         label="Prenom"
@@ -83,7 +102,8 @@ const InfoPersonel = ({navigation,route}) => {
                             </View>
                             <Input
                                 size="large"
-                                // onChangeText={props.handleChange('country')}
+                               onChangeText={(ville)=>setVille(ville)
+                                        }
                                 borderColor="black"
                                 value={user.ville}
                                 label="Pays"
@@ -101,9 +121,11 @@ const InfoPersonel = ({navigation,route}) => {
                             <Input
                                 size="large"
                                 // onChangeText={props.handleChange('city')}
+                                onChangeText={(pays)=>setPays(pays)
+                                        }
                                 value={user.pays}
                                 borderColor="black"
-                                label="Ville"
+                                label="pays"
                                 labelColor={'red'}
                                 labelContainerStyle={styles.labelStyle}
                                 style={{ color: 'black' }}
@@ -141,7 +163,7 @@ const InfoPersonel = ({navigation,route}) => {
                                     text="Submit"
                                     size="large"
                                     style={styles.button}
-                                    onPress={console.log('update')}
+                                    onPress={()=>updateUser()}
                                 />
                             </View>
                               <View style={{marginTop:130 ,position:'relative'}} />

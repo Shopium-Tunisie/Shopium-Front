@@ -8,6 +8,7 @@ import ButtonWithLoader from '../../components/ButtonWithLoader';
 import AuthContext from "../../tools/AuthContext";
 import { showSuccess } from '../../tools/helperFunction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {showMessage} from "react-native-flash-message";
 import axios from 'axios';
 const SignUpScreen = ({route,navigation})=> {
     const [nom,setNom] = useState(null);
@@ -37,10 +38,15 @@ const SignUpScreen = ({route,navigation})=> {
     const idUser = await AsyncStorage.getItem('idUSer');
     console.log(idUser);
     const id = idUser;
-     const profile = await axios.post('http://192.168.100.230:8000/getMe',{id});
+     const profile = await axios.post('http://192.168.1.4:8000/user/getMe',{id});
      console.log(profile.data);
      const userProfile=profile.data;
-    showSuccess('BienVenu , vérifier votre compte');
+     showMessage({
+        type:'success',
+        message:`Bienvenu ${userProfile.nom} ,Verifier votre compte`,
+        backgroundColor:'green',
+        position:'top',
+      });
     navigation.navigate(('verification'),{profile:userProfile});
  } catch (error) {
      console.log(error);
