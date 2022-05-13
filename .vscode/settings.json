@@ -7,5 +7,5 @@
         "signin"
     ],
     "cSpell.language": "en,en-US,en-GB",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

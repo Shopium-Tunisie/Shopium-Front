@@ -38,7 +38,7 @@ const SignUpScreen = ({route,navigation})=> {
     const idUser = await AsyncStorage.getItem('idUSer');
     console.log(idUser);
     const id = idUser;
-     const profile = await axios.post('http://192.168.1.4:8000/user/getMe',{id});
+     const profile = await axios.post('http://192.168.105.230:8000/user/getMe',{id});
      console.log(profile.data);
      const userProfile=profile.data;
      showMessage({

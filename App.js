@@ -17,7 +17,7 @@ import FideliteScreen from './src/Screens/TabScreens/FideliteScreen';
 import HomeScreen from './src/Screens/TabScreens/HomeScreen';
 import ProfilScreen from './src/Screens/TabScreens/ProfilScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import React,{useState,useEffect, useReducer, useMemo} from 'react';
+import React,{useState,useEffect, useReducer, useMemo, useContext} from 'react';
 import OnboardingScreen from './src/Screens/authScreens/OnboardingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TabNavigation from './src/routes/TabNavigation/tabNavigation';
@@ -45,7 +45,7 @@ const initialState = {
 isLoading :true,
 isLoggedIn:false,
 userToken:null,
-userInfo:null,
+userId:null,
 };
 const reducer = (prevState,action)=>{
   switch (action.type){
@@ -55,6 +55,7 @@ const reducer = (prevState,action)=>{
         userToken:action.token,
         isLoading:false,
         isLoggedIn:true,
+        userId:action.id,
       };
     case 'RESTORE_TOKEN_FAILURE':
       return {
@@ -67,24 +68,25 @@ const reducer = (prevState,action)=>{
           ...prevState,
           userToken:action.token,
           isLoggedIn:true,
+          userId:action.id,
         };
       case 'SIGN_OUT':
         return {
           ...prevState,
           userToken:null,
           isLoggedIn:false,
+          userId:null,
         };
       case 'SIGN_UP' :
       return {
         ...prevState,
         isLoading:false,
         isLoggedIn:false,
-        userInfo:action.id,
+        userId:action.id,
       };
   }
 };
 const App = ({route})=>{
-
   const [state,dispatch] = useReducer(reducer,initialState);
   console.log('state',state);
     const [showSplashScreen, setShowSplashScreen] = useState(true);
@@ -106,9 +108,6 @@ const App = ({route})=>{
     }
     // AsyncStorage.removeItem('isAppFirstLaunched');
   }, [isFirstLaunch]);
-  useEffect(()=>{
-
-  },[]);
 //   useEffect(()=>{
 //   (async()=>{
 //     const userData = await getUserData();
@@ -122,15 +121,17 @@ const App = ({route})=>{
       useEffect(()=>{
         const bootstrapAsync = async()=>{
           let userToken;
-          let user;
+          let userId;
           try {
-            userToken = await AsyncStorage.getItem('token');
+            userToken = await  AsyncStorage.getItem('token');
+            userId = await AsyncStorage.getItem('userId');
+            console.log({user:userId});
           } catch (error) {
               console.log('error',error);
               //error fetching token
           }
           if (userToken !== null)
-            {dispatch({type:'RESTORE_TOKEN_SUCCESS',token:userToken});}
+            {dispatch({type:'RESTORE_TOKEN_SUCCESS',token:userToken,id:userId});}
           else
              {dispatch({type:'RESTORE_TOKEN_FAILURE'});}
         };
@@ -139,32 +140,35 @@ const App = ({route})=>{
       const authContext = useMemo(
          ()=>({
             signIn: async (email,password)=>{
-               const response = await axios.post('http://192.168.1.4:8000/user/signin',{email,password});
-              console.log('App singIn', response.data);
+               const response = await axios.post('http://192.168.4.230:8000/user/signin',{email,password});
+              console.log('App singIn', response.data.user);
               if (response.data.success){
                 const userInfo = response.data;
-                await AsyncStorage.setItem('token',userInfo.token);
-
-                dispatch({type:'SIGN_IN',token:userInfo.token});
+                 await AsyncStorage.setItem('token',userInfo.token);
+                  await AsyncStorage.setItem('userId',userInfo.id);
+                  console.log('userId',userInfo.id);
+                dispatch({type:'SIGN_IN',token:userInfo.token, id:userInfo.id});
               }
             },
             signOut: async ()=>{
               await AsyncStorage.removeItem('token');
+              await AsyncStorage.removeItem('userId');
                dispatch({type:'SIGN_OUT'});
             },
             signUp: async (nom,prenom,ville,pays,email,password)=>{
-              const response =  await axios.post('http://192.168.1.4:8000/user/create',{nom,prenom,ville,pays,email,password});
+              const response =  await axios.post('http://192.168.4.230/user/create',{nom,prenom,ville,pays,email,password});
               console.log('app sigUp',response.data);
               if (response.data.success){
                 const userInfo = response.data.user;
-                console.log('user info ',userInfo.id);
-                await AsyncStorage.setItem('idUSer',userInfo.id);
-                dispatch({type:'SIGN_UP',id:userInfo.id});
+                console.log('user info ',response.data.user.id);
+                await AsyncStorage.setItem('userId',response.data.user.id);
+                dispatch({type:'SIGN_UP',userId:response.data.user.id});
               }
             },
             userToken:state.userToken,
+            userId:state.userId,
       }),
-      [state.isLoggedIn, state.userToken ,state.isLoading,state.userInfo],
+      [state.isLoggedIn, state.userToken ,state.isLoading,state.userInfo,state.userId],
       );
 return (
     isFirstLaunch !== null && (

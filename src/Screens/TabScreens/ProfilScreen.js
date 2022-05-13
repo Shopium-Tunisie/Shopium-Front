@@ -27,21 +27,22 @@ const ProfilScreen =  ({navigation,route}) => {
     const functionCombinedSecond = () => {
         setModalVisible(!modalVisible);
     };
-    const { data, error, loading } = useState('');
         useEffect(()=>{
             const userInfo = async()=>{
                  let userInf;
                  try {
                      const token = await AsyncStorage.getItem('token');
                       console.log(token);
-                      const response = await axios.post('http://192.168.1.4:8000/user/me',{token});
-                    //   console.log(response.data.user);
-                      if (!response){
+                      const response = await axios.post('http://192.168.4.230/user/me',{token});
+                      const user1 = await axios.post('http://192.168.4.230:8000/user/getMe',{id:response.data.user._id});
+                      console.log({user1:user1.data});
+                      if (!user){
                           console.log('error');
                       } else {
-                          userInf = response.data.user;
+                          userInf = user1.data;
+                          console.log({userInfo:userInf});
                             setUser(userInf);
-                          console.log(userInf);
+                          console.log({userInf:userInf});
                       }
                  } catch (error1) {
                     console.log(error1);

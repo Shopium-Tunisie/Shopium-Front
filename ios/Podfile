@@ -14,6 +14,8 @@ target 'shopium' do
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+  pod 'ReactNativeCameraKit', :path => '../node_modules/react-native-camera-kit'
+
   target 'shopiumTests' do
     inherit! :complete
     # Pods for testing
