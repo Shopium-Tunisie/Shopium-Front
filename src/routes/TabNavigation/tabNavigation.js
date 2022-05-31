@@ -13,6 +13,7 @@ import ProfilStack from '../Stack/ProfilStack/ProfilStack';
 import Scan from '../../Screens/TabScreens/Scan';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ButtonTab from '../../components/ButtonTab';
+import Notification from '../../Screens/MainScreens/Notification';
 const Tab = createBottomTabNavigator();
 const TabNavigation = () => {
   return (

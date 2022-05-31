@@ -15,17 +15,16 @@ const Scan = (props,{route})=>{
   const [dataC,setData] = useState([]);
   const [loading,setLoading] = useState(false);
   const [user,setUser] = useState({});
-  const [refreshing, setRefreshing] = useState(true);
+    const [refreshing, setRefreshing] = useState(true);
   const cameraType = 'back';
   const {userToken,userId} = useContext(AuthContext);
-    console.log({userToken:userToken});
     console.log({userId:userId});
 const toggleOverlay = () => {
   setVisible(!visible);
 };
 const loadData = ()=>{
   console.log({userId1:userId});
-  axios.post('http://192.168.4.230:8000/cart/getByUserId',{userId:userId})
+  axios.post('http://192.168.64.48:8000/cart/getByUserId',{userId:userId})
              .then((res)=>{
               setData(res.data.carte);
               console.log(res.data.carte);
@@ -48,8 +47,8 @@ useEffect(()=>{
       setScanned(false);
       setText(data);
       console.log('before add');
-      await axios.post('http://192.168.4.230:8000/cart/add',{userId:userId,data:data});
-      await axios.post('http://192.168.4.230:8000/cart/getByUserId',{userId})
+      await axios.post('http://192.168.64.48:8000/cart/add',{userId:userId,data:data});
+      await axios.post('http://192.168.64.48:8000/cart/getByUserId',{userId})
              .then((res)=>{
               setData(res.data.carte);
               console.log({CARD:res.data.carte});

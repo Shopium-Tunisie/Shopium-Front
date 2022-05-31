@@ -1,14 +1,33 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React,{useContext, useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from '../../components/Button';
 import {Image} from '../../components/Image';
 import {Text} from '../../components/Text';
 import {lorem} from '../../tools/helper';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const image = 'https://i.ibb.co/1XbHTbT/Artboard-3.png';
-
-const Parrainage = () => {
+import AuthContext from '../../tools/AuthContext';
+import axios from 'axios';
+const Parrainage = ({navigation},porps) => {
+        const {userToken,userId} = useContext(AuthContext);
+                const [me,setMe] = useState();
+        const data = async()=>{
+            try {
+              const id = await AsyncStorage.getItem('userId');
+              console.log({useid:id});
+              const user = await axios.post('http://192.168.64.48:8000/user/getMe',{id:id});
+              console.log({user:user.data.user.codeParrainage});
+              setMe(user.data.user.codeParrainage);
+              console.log(me);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+        useEffect( () => {
+          data();
+          console.log({me:me});
+        }, [me]);
   return (
     <View style={styles.container}>
       <Image
@@ -30,13 +49,14 @@ const Parrainage = () => {
           weight="bold"
         />
         <Text
-          text="175545"
+          text={me}
           colorText="black"
-          style={{fontSize: 30}}
+          style = {{ fontSize : 30 }}
           weight="bold"
         />
       </View>
       <Button
+        onPress={()=>navigation.navigate('ami',{code:me})}
         style={{alignSelf: 'center', height: 44, marginTop: 100}}
         text="Parrainer"
         theTextColor="white"

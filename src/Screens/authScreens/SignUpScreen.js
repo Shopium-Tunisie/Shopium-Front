@@ -35,11 +35,11 @@ const SignUpScreen = ({route,navigation})=> {
  const onClickSignup = async() => {
  try {
     await signUp(nom,prenom,ville,pays,email,password);
-    const idUser = await AsyncStorage.getItem('idUSer');
-    console.log(idUser);
+    const idUser = await AsyncStorage.getItem('userId');
+    console.log({idUser});
     const id = idUser;
-     const profile = await axios.post('http://192.168.105.230:8000/user/getMe',{id});
-     console.log(profile.data);
+     const profile = await axios.post('http://192.168.201.48:8000/user/getMe',{id:idUser});
+     console.log({profile:profile.data});
      const userProfile=profile.data;
      showMessage({
         type:'success',
@@ -47,7 +47,7 @@ const SignUpScreen = ({route,navigation})=> {
         backgroundColor:'green',
         position:'top',
       });
-    navigation.navigate(('verification'),{profile:userProfile});
+    navigation.navigate(('verification'),{profile:idUser});
  } catch (error) {
      console.log(error);
  }

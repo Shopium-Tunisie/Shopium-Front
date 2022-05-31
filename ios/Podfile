@@ -16,6 +16,8 @@ target 'shopium' do
 
   pod 'ReactNativeCameraKit', :path => '../node_modules/react-native-camera-kit'
 
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
   target 'shopiumTests' do
     inherit! :complete
     # Pods for testing

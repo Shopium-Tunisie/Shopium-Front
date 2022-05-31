@@ -39,7 +39,7 @@ const ParametreScreen = ({navigation,route}) => {
         text="RIB"
         secondText="******"
         onPress={() => {
-          navigation.navigate('RibScreen');
+          navigation.navigate('RibScreen',{user:user});
         }}
       />
         <ParametresTouchables

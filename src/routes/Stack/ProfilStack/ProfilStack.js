@@ -16,6 +16,8 @@ import PosteScreen from '../../../Screens/ProfileScreen/PostScreen';
 import CodeScreen from '../../../Screens/ProfileScreen/CodeScreen';
 import Parrainage from '../../../Screens/ProfileScreen/Parrainage';
 import Rembourser from '../../../Screens/ProfileScreen/Rembourser';
+import SendInvit from '../../../Screens/ProfileScreen/SendInvit';
+import Notification from '../../../Screens/MainScreens/Notification';
 const Stack = createStackNavigator();
 const ProfilStack = () => {
   return (
@@ -32,8 +34,8 @@ const ProfilStack = () => {
           };
         }}
       />
-      <Stack.Screen name="parametre" component={ParametreScreen}/>
-      <Stack.Screen name="infoPersonel" component={InfoPersonel}/>
+      <Stack.Screen name="parametre" component={ParametreScreen} />
+      <Stack.Screen name="infoPersonel" component={InfoPersonel} options={{headerShown:false}}/>
       <Stack.Screen name="password" component={PasswordScreen}/>
        <Stack.Screen name="RibScreen" component={RibScreen}/>
        <Stack.Screen name="PayPalScreen" component={PayPalScreen}/>
@@ -42,6 +44,8 @@ const ProfilStack = () => {
        <Stack.Screen name="EnterCode" component={CodeScreen}/>
        <Stack.Screen name="Parrainer" component={Parrainage}/>
        <Stack.Screen name="Rembourser" component={Rembourser}/>
+       <Stack.Screen name="ami" component={SendInvit}/>
+       <Stack.Screen name="notification" component={Notification}/>
     </Stack.Navigator>
   );
 };

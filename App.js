@@ -87,6 +87,7 @@ const reducer = (prevState,action)=>{
   }
 };
 const App = ({route})=>{
+  //dispatch
   const [state,dispatch] = useReducer(reducer,initialState);
   console.log('state',state);
     const [showSplashScreen, setShowSplashScreen] = useState(true);
@@ -140,7 +141,7 @@ const App = ({route})=>{
       const authContext = useMemo(
          ()=>({
             signIn: async (email,password)=>{
-               const response = await axios.post('http://192.168.4.230:8000/user/signin',{email,password});
+               const response = await axios.post('http://192.168.64.48:8000/user/signin',{email,password});
               console.log('App singIn', response.data.user);
               if (response.data.success){
                 const userInfo = response.data;
@@ -156,13 +157,13 @@ const App = ({route})=>{
                dispatch({type:'SIGN_OUT'});
             },
             signUp: async (nom,prenom,ville,pays,email,password)=>{
-              const response =  await axios.post('http://192.168.4.230/user/create',{nom,prenom,ville,pays,email,password});
+              const response =  await axios.post('http://192.168.64.48:8000/user/create',{nom,prenom,ville,pays,email,password});
               console.log('app sigUp',response.data);
               if (response.data.success){
                 const userInfo = response.data.user;
-                console.log('user info ',response.data.user.id);
-                await AsyncStorage.setItem('userId',response.data.user.id);
-                dispatch({type:'SIGN_UP',userId:response.data.user.id});
+                console.log('user info ',userInfo.id);
+                await AsyncStorage.setItem('userId',userInfo.id);
+                dispatch({type:'SIGN_UP',userId:userInfo.id});
               }
             },
             userToken:state.userToken,

@@ -25,7 +25,7 @@ const HomeStack = () => {
                 size={30}
                 color="black"
                 onPress={() => {
-                  navigation.navigate('Notifications');
+                  navigation.navigate('notification');
                 }}
               />
             ),
@@ -35,7 +35,7 @@ const HomeStack = () => {
         }}
       />
       <Stack.Screen
-        name="Notifications"
+        name="notification"
         component={Notification}
         options={{
           headerShown: true,

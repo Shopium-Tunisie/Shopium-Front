@@ -16,41 +16,39 @@ import AuthContext from '../../tools/AuthContext';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const ProfilScreen =  ({navigation,route}) => {
-    const {userToken} = useContext(AuthContext);
-    console.log(userToken);
     const [user,setUser] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
-    const functionCombined = (x) => {
+  const {userToken, userId} = useContext(AuthContext);
+console.log({userToken: userToken});
+console.log({userId: userId});
+  const functionCombined = (x) => {
         setModalVisible(!modalVisible);
         navigation.navigate(x);
     };
     const functionCombinedSecond = () => {
         setModalVisible(!modalVisible);
     };
-        useEffect(()=>{
+    useEffect(()=>{
             const userInfo = async()=>{
-                 let userInf;
-                 try {
-                     const token = await AsyncStorage.getItem('token');
-                      console.log(token);
-                      const response = await axios.post('http://192.168.4.230/user/me',{token});
-                      const user1 = await axios.post('http://192.168.4.230:8000/user/getMe',{id:response.data.user._id});
-                      console.log({user1:user1.data});
-                      if (!user){
-                          console.log('error');
-                      } else {
-                          userInf = user1.data;
-                          console.log({userInfo:userInf});
-                            setUser(userInf);
-                          console.log({userInf:userInf});
-                      }
-                 } catch (error1) {
-                    console.log(error1);
-                 }
-                //  console.log('user', response);
-                //  setUser(response);
-             };
-             userInfo();
+                        let userInf;
+                        try {
+                             const user1 = await axios.post('http://192.168.64.48:8000/user/me',{token:userToken});
+                             console.log({user1:user1.data});
+                             if (!user){
+                                 console.log('error');
+                             } else {
+                                 userInf = user1.data.user;
+                                 console.log({userInfo:userInf.photo});
+                                   setUser(userInf);
+                                 console.log({userInf:userInf});
+                             }
+                        } catch (error1) {
+                           console.log({error1});
+                        }
+                       //  console.log('user', response);
+                       //  setUser(response);
+                    };
+            userInfo();
         },[]);
   return (
        <ScrollView
@@ -66,6 +64,7 @@ const ProfilScreen =  ({navigation,route}) => {
                                 email={user.email}
                                 nom={user.nom}
                                 prenom={user.prenom}
+                                photo={user.photo}
                             />
                         </View>
                         <View style={[styles.secondChild]}>
@@ -161,10 +160,17 @@ const ProfilScreen =  ({navigation,route}) => {
                                 title="Parrainer avec un ami"
                                 description="Lorem ispsps"
                                 onPress={() => {
-                                    navigation.navigate('Parrainer');
+                                    navigation.navigate('Parrainer',{user:user});
                                 }}
                             />
-
+                                 <ProfilBottomBtn
+                                icon={require('../../assets/images/refund.png')}
+                                title="Les Invitations de Parrainage"
+                                description="Lorem ispsps"
+                                onPress={() => {
+                                    navigation.navigate('notification');
+                                }}
+                            />
                             <ProfilBottomBtn
                                 icon={require('../../assets/images/refund.png')}
                                 title="Demande de remboursement"

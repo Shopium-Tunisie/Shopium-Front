@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import {View, Keyboard, KeyboardAvoidingView, StyleSheet, Dimensions} from 'react-native';
-import React, { useState } from 'react';
+import {View, Keyboard, KeyboardAvoidingView, StyleSheet, Dimensions, Alert} from 'react-native';
+import React, { useContext, useState } from 'react';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { height, width} from '../../utils/Dimension';
 import { Formik } from 'formik';
@@ -9,9 +9,13 @@ import { Input } from '../../components/Input';
 import { Text } from '../../components/Text';
 import { Button } from '../../components/Button';
 import axios from 'axios';
+import AuthContext from '../../tools/AuthContext';
 export const screenWidth = Math.round(Dimensions.get('window').width);
 export const screenHeight = Math.round(Dimensions.get('window').height);
 const InfoPersonel = ({navigation,route}) => {
+    const {userToken,userId} = useContext(AuthContext);
+        console.log({userToken:userToken});
+        console.log({userId:userId});
     const { user } = route.params;
     const getDetails = (type)=>{
         if (route.params){
@@ -36,7 +40,7 @@ const InfoPersonel = ({navigation,route}) => {
     const [pays,setPays] = useState(getDetails('pays'));
     console.log(user._id);
     const UpdateUsers = {
-        id:user._id,
+        id:userId,
         nom:nom,
         prenom:prenom,
         ville:ville,
@@ -46,13 +50,20 @@ const InfoPersonel = ({navigation,route}) => {
     console.log({UpdateUsers:UpdateUsers});
     const updateUser = async ()=>{
         try {
-            const updateProfile = await axios.put('http://192.168.4.230:8000/user/update',{id:UpdateUsers.id,nom:UpdateUsers.nom,prenom:prenom,ville:ville,pays:pays});
+            const updateProfile = await axios.put('http://192.168.64.48:8000/user/update',{id:userId,nom:UpdateUsers.nom,prenom:prenom,ville:ville,pays:pays});
             if (updateProfile){
                 // const id = updateProfile.data.id;
                 // const user1 = await axios.get('http://192.168.105.230:8000/user/getMe',{id});
                 // console.log({user:user1});
                 console.log(updateProfile.data);
-               
+                alert('Success',{
+                 cancelable: true,
+                 onDismiss: () =>
+                     Alert.alert(
+                    'This alert was dismissed by tapping outside of the alert dialog.'
+                    ),
+    });
+                navigation.navigate('profile',{user:user});
             } else {
                 console.log('error');
             }
@@ -195,6 +206,15 @@ const InfoPersonel = ({navigation,route}) => {
                                     style={styles.button}
                                     onPress={()=>updateUser()}
                                 />
+                                <View style={{marginTop:10}}>
+                                 <Button
+                                    theTextColor="white"
+                                    text="Profile"
+                                    size="large"
+                                    style={styles.button}
+                                    onPress={()=>navigation.push('profile1',{user:user})}
+                                />
+                                </View>
                             </View>
                               <View style={{marginTop:130 ,position:'relative'}} />
         </View>

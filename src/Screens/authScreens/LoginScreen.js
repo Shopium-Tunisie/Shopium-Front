@@ -81,7 +81,7 @@ const LoginScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.root}>
       <ScrollView style={styles.container}>
-        <Text style={styles.title}>Créer un compte</Text>
+        <Text style={styles.title}>Se Connecter</Text>
         {/* <Text style={{margin: 20, textAlign: 'center'}}>{message}</Text> */}
         <View>
           <Input

@@ -4,13 +4,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import React,{useState,useRef,useEffect} from 'react';
+import React,{useState,useRef,useEffect, useContext} from 'react';
 import {TouchableOpacityBase,View,StyleSheet,Text,KeyboardAvoidingView,TextInput,Dimensions,Keyboard,ToastAndroid, Button} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IconButton from 'react-native-vector-icons/dist/lib/icon-button';
 import { showSuccess } from '../../tools/helperFunction';
 import FlashMessage, {showMessage, hideMessage} from 'react-native-flash-message';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
+import AuthContext from "../../tools/AuthContext";
 // import { Button } from '../../components/Button';
 const inputs = Array(4).fill('');
 let newInputIndex = 0;
@@ -47,35 +48,33 @@ const onSubmitOPT = async()=>{
         val += element;
     });
     const otp = val;
-    const userId = profile._id;
-    const idUser = await AsyncStorage.getItem('idUser');
-    console.log(idUser);
-    console.log(otp,['id',userId]);
+    const userId = profile;
    try {
-    const {data} = await axios.post('http://192.168.1.4:8000/user/verify-email', {otp, userId});
-    if (data.success){
-      // showMessage({
-      //   type:'success',
-      //   message:`${data.message}`,
-      //   backgroundColor:'green',
-      //   position:'top',
-      // });
-       showMessage({
-            message: `${data.message}`,
-            type: 'success',
-          });
-      <FlashMessage position="top"/>;
-      ToastAndroid.show(`${data.message}`,ToastAndroid.SHORT);
-    } else {
-       showMessage({
-        type:'error',
-        message:`${data.error}`,
-        backgroundColor:'red',
-        position:'top',
-      });
-       ToastAndroid.show(`${data.error}`,ToastAndroid.SHORT);
-    }
+    const {data} = await axios.post('http://192.168.0.48:8000/user/verify-email', {otp, userId});
+    // if (data.success){
+    //   // showMessage({
+    //   //   type:'success',
+    //   //   message:`${data.message}`,
+    //   //   backgroundColor:'green',
+    //   //   position:'top',
+    //   // });
+    //    showMessage({
+    //         message: `${data.message}`,
+    //         type: 'success',
+    //       });
+    //   <FlashMessage position="top"/>;
+    //   ToastAndroid.show(`${data.message}`,ToastAndroid.SHORT);
+    // } else {
+    //    showMessage({
+    //     type:'error',
+    //     message:`${data.error}`,
+    //     backgroundColor:'red',
+    //     position:'top',
+    //   });
+    //    ToastAndroid.show(`${data.error}`,ToastAndroid.SHORT);
+    // }
      let token = data.token;
+     console.log(token)
     navigation.navigate('login');
   } catch (error) {
     return console.log(error);

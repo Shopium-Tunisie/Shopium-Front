@@ -18,7 +18,7 @@ const ForgotPassword = ({navigation}) => {
       }
       console.log(email);
       const {data} = await axios.post(
-        'http://192.168.1.4:8000/user/forgot-password',
+        'http://192.168.0.48:8000/user/forgot-password',
         {email},
       );
       console.log(data);
