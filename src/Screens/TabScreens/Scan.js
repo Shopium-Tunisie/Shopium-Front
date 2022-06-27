@@ -1,20 +1,24 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import {Button,Text, StyleSheet, View,ScrollView, Dimensions, FlatList, SafeAreaView, ActivityIndicator, StatusBar, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, View,ScrollView, Dimensions, FlatList, SafeAreaView, ActivityIndicator, StatusBar, TouchableOpacity} from 'react-native';
 import React,{useState,useEffect, useContext,useCallback} from 'react';
 import BarcodeScanner from 'react-native-scan-barcode';
 import Barcode from 'react-native-barcode-builder';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from '../../tools/AuthContext';
+import { Input } from '../../components/Input';
+import { Overlay} from "react-native-elements";
+import { Button } from '../../components/Button';
+const URL = 'http://192.168.155.145:8000';
 const Scan = (props,{route})=>{
   const [scanned,setScanned] = useState(false);
-    const [visible,setVisible] = useState(false);
+    const [visible,setVisible] = useState(true);
   const [text, setText] = useState('b');
   const [format, setFormat] = useState('CODE128');
   const [dataC,setData] = useState([]);
   const [loading,setLoading] = useState(false);
   const [user,setUser] = useState({});
+  const [nom,setNom] = useState('');
     const [refreshing, setRefreshing] = useState(true);
   const cameraType = 'back';
   const {userToken,userId} = useContext(AuthContext);
@@ -22,37 +26,32 @@ const Scan = (props,{route})=>{
 const toggleOverlay = () => {
   setVisible(!visible);
 };
+
 const loadData = ()=>{
   console.log({userId1:userId});
-  axios.post('http://192.168.64.48:8000/cart/getByUserId',{userId:userId})
+  axios.post(`${URL}/cart/getByUserId`,{userId:userId})
              .then((res)=>{
               setData(res.data.carte);
               console.log(res.data.carte);
               setRefreshing(false);
               });
 };
-// const get = ()=>{
-//   axios.get('http://192.168.4.230:8000/cart/all')
-//              .then((res)=>{
-//               setData(res.data.cart);
-//               console.log(res.data.cart);
-//               });
-// };
 useEffect(()=>{
   setLoading(true);
   loadData();
 },[]);
   const hadleBarCodeScanner = async({type,data})=>{
     try {
-      setScanned(false);
+      setScanned(true);
       setText(data);
       console.log('before add');
-      await axios.post('http://192.168.64.48:8000/cart/add',{userId:userId,data:data});
-      await axios.post('http://192.168.64.48:8000/cart/getByUserId',{userId})
+      await axios.post(`${URL}/cart/add`,{userId:userId,data:data,nom:nom});
+      await axios.post(`${URL}/cart/getByUserId`,{userId})
              .then((res)=>{
               setData(res.data.carte);
               console.log({CARD:res.data.carte});
               setRefreshing(false);
+              setScanned(false)
               });
       console.log('Type' + type + '\nData' + data);
       console.log(dataC);
@@ -62,7 +61,7 @@ useEffect(()=>{
   };
   return (
     <SafeAreaView style={styles.container}>
-       <Text style={{fontSize: 18,color:'black',margin:20}}>
+       <Text style={{fontSize: 26,color:'black',margin:20,fontWeight:"bold",marginBottom:20}}>
          Scanner Votre Carte de Fidélité
        </Text>
         { scanned ? (
@@ -75,23 +74,40 @@ useEffect(()=>{
               height={200}
               borderRadius={'50%'}
               />
+              <View style={{backgroundColor:'white'}}>
+                <Input placeholder={'Saisie votre magasin'} inputTextColor={'black'} placeholderTextColor={'grey'} onChangeText={(nom)=>setNom(nom)} value={nom}/>
+              </View>
             </TouchableOpacity>
           )
           :
-         ( <Button title="scan again" onPress={() => setScanned(true)} color="blue" /> )
+         (
+                <Button text="Scanner Votre Carte " theTextColor={"white"}  onPress={() => setScanned(true)} size={'large'} style={{height:50}} />
+           )
           }
-          <ScrollView>
+          <ScrollView style={{marginTop:50}}>
           {
             dataC.map( item =>
+          // <Overlay isVisible={visible} onBackdropPress={toggleOverlay} >
+                 
+              < View style={{backgroundColor:'white' ,borderRadius:10,borderWidth:1,justifyContent:'center',borderColor:'black'}}>
+                <View style={{padding:5,alignItems:'center'}} >
+              <Text key={`key- ${item._id}`} style={{color:'red',position:'relative' , justifyContent:'center',fontSize:18,fontWeight:'bold'}} >{item.nom}</Text>
+               </View>
+              <TouchableOpacity onPress={toggleOverlay} key={item._id}>
               <Barcode
                 format={format}
                 value={item.data}
                 text={item.data}
-                style={{ marginBottom: 40 }}
+                style={{ marginBottom: 30,marginTop:10 }}
                 key={item._id}
-              maxWidth={Dimensions.get('window').width / 2}
-              />)
-          }
+                maxWidth={Dimensions.get('window').width / 2}
+                 />
+              </TouchableOpacity>
+                 <View style={{marginBottom:15,marginTop:10}}/>
+                </View>
+
+              )}
+
           </ScrollView>
     </SafeAreaView>
   );

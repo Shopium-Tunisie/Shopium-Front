@@ -106,7 +106,7 @@ const ProductReview = ({route,navigation}) => {
         flex: 1,
         backgroundColor: 'white',
       }}>
-      <ProductSwiper images={images} />
+      {/* <ProductSwiper images={images} /> */}
       <View style={styles.icon}>
         <IconFeather
           name="edit"

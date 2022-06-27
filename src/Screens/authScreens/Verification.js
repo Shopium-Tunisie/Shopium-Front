@@ -12,6 +12,7 @@ import { showSuccess } from '../../tools/helperFunction';
 import FlashMessage, {showMessage, hideMessage} from 'react-native-flash-message';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import AuthContext from "../../tools/AuthContext";
+const URL = "http://192.168.155.145:8000";
 // import { Button } from '../../components/Button';
 const inputs = Array(4).fill('');
 let newInputIndex = 0;
@@ -50,7 +51,7 @@ const onSubmitOPT = async()=>{
     const otp = val;
     const userId = profile;
    try {
-    const {data} = await axios.post('http://192.168.0.48:8000/user/verify-email', {otp, userId});
+    const {data} = await axios.post(`${URL}/user/verify-email`, {otp, userId});
     // if (data.success){
     //   // showMessage({
     //   //   type:'success',

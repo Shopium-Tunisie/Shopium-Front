@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable prettier/prettier */
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState,useEffect } from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
@@ -13,9 +13,10 @@ import Square from './Square';
 import { Discount } from './Discount';
 import Description from './Descreption';
 import Icon from 'react-native-vector-icons/Feather';
-
+import axios from 'axios';
+const URL = "http://192.168.155.145:8000";
 const HEART_CONTAINER_SIZE = 30;
-
+import { useProductsStateValue } from '../../tools/ProductContext';
 export const link =
   'https://www.nesquik.com/sites/site.prod1.nesquik.com/files/products/nesquik_no_sugar_added_chocolate_cocoa_powder_16_oz._tub__chocolate_milk_powderPNG';
 
@@ -26,22 +27,41 @@ const Product = ({
   offerEnd = 3,
   productName = ' Céréales NESQUIK ',
   productDescription = 'Not good for health, i know you know',
-  isNew = true,
+  isnew,
   isLiked,
   id,
   style,
 }) => {
   const [liked, setLiked] = useState(isLiked);
+  const [prod,setProd] = useState([]);
   const navigation = useNavigation();
 
-  const likeProduct = () => {
-    setLiked(!liked);
+  const likeProduct = async() => {
+    console.log(liked);
+    if (!liked){
+      setLiked(true);
+    } else {
+      setLiked(false);
+      console.log(liked);
+    }
+    const data = axios.post(`${URL}/api/products/likeDislike`,{id:id,like:liked});
+    console.log({data:data.data});
   };
 
+//   const getProduits = async()=>{
+//    const produit = await axios.post('http://192.168.64.48:8000/api/products/');
+//    return produit.data;
+  
+//  };
+//   useEffect(() =>{
+//    const data = getProduits();
+//     setProd(data);
+//     console.log(prod);
+//   },[prod]);
   const thirdChild = {
     height: '16%',
     flexDirection: 'row',
-    justifyContent: isNew ? 'space-between' : 'center',
+    justifyContent: isnew ? 'space-between' : 'center',
     paddingHorizontal: 6,
     alignItems: 'center',
 
@@ -56,6 +76,8 @@ const Product = ({
           navigation.navigate('ProductDetail', {
             productName: productName,
             rating: 4,
+            productImage,
+            id,
             similarProducts: similarProducts,
           });
         }}>
@@ -123,7 +145,7 @@ const Product = ({
         </View>
       </View>
       <View style={thirdChild}>
-        {isNew ? <Square text="New"  /> : <Fragment />}
+        {isnew ? <Square text="New"  /> : <Fragment />}
         <TouchableOpacity
           onPress={likeProduct}
           style={styles.heartContainerStyle(liked)}>

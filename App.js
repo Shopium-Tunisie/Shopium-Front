@@ -3,41 +3,25 @@
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 import 'react-native-gesture-handler';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {createAppContainer, createSwitchNavigator, SwitchRouter} from 'react-navigation';
 import ForgotPassword from './src/Screens/authScreens/ForgotPassword';
 import LoginScreen from './src/Screens/authScreens/LoginScreen';
 import ResetPassword from './src/Screens/authScreens/ResetPassword';
 import SignUpScreen from './src/Screens/authScreens/SignUpScreen';
 import Verification from './src/Screens/authScreens/Verification';
+import {showMessage} from "react-native-flash-message";
 import SplashScreen from './src/Screens/MainScreens/SplashScreen';
-import FavorieScreen from './src/Screens/TabScreens/FavorieScreen';
-import FideliteScreen from './src/Screens/TabScreens/FideliteScreen';
-import HomeScreen from './src/Screens/TabScreens/HomeScreen';
-import ProfilScreen from './src/Screens/TabScreens/ProfilScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import React,{useState,useEffect, useReducer, useMemo, useContext} from 'react';
+import React,{useState,useEffect, useReducer, useMemo} from 'react';
 import OnboardingScreen from './src/Screens/authScreens/OnboardingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TabNavigation from './src/routes/TabNavigation/tabNavigation';
-import HomeStack from './src/routes/Stack/HomeStack/HomeStack';
-import Route from './src/routes/Route';
-import FlashMessage from 'react-native-flash-message';
-import { View } from 'react-native';
-// import { Provider } from 'react-redux';
-// import store from './src/Redux/store';
-import { getUserData } from './src/utils/utils';
-import {saveUserData} from './src/Redux/actions/auth';
-import Notification from './src/Screens/MainScreens/Notification';
-import ProductDetail from './src/Screens/MainScreens/ProductDetail';
-import PromosScreen from './src/Screens/MainScreens/PromoScreen';
-import ProductReview from './src/Screens/MainScreens/ProductReview';
+
 import ProductsProvider from './src/tools/ProductContext';
-import AuthNavigation from './src/routes/authNavigator/authNavigation';
+
 import AuthContext from './src/tools/AuthContext';
 import axios from 'axios';
-import { data } from './src/utils/FakeData';
+
 
 const RootStack = createNativeStackNavigator();
 
@@ -107,18 +91,7 @@ const App = ({route})=>{
     } else {
       setIsFirstLaunch(false);
     }
-    // AsyncStorage.removeItem('isAppFirstLaunched');
   }, [isFirstLaunch]);
-//   useEffect(()=>{
-//   (async()=>{
-//     const userData = await getUserData();
-//     console.log(userData);
-//     console.log('user data App.js',userData);
-//     if (!!userData){
-//       saveUserData(userData);
-//     }
-//   })();
-// },[]);
       useEffect(()=>{
         const bootstrapAsync = async()=>{
           let userToken;
@@ -141,14 +114,21 @@ const App = ({route})=>{
       const authContext = useMemo(
          ()=>({
             signIn: async (email,password)=>{
-               const response = await axios.post('http://192.168.64.48:8000/user/signin',{email,password});
+               const response = await axios.post('http://192.168.155.145:8000/user/signin',{email,password});
               console.log('App singIn', response.data.user);
               if (response.data.success){
                 const userInfo = response.data;
-                 await AsyncStorage.setItem('token',userInfo.token);
-                  await AsyncStorage.setItem('userId',userInfo.id);
-                  console.log('userId',userInfo.id);
-                dispatch({type:'SIGN_IN',token:userInfo.token, id:userInfo.id});
+                console.log(response.data.verified);
+                if (response.data.verified === false){
+                      dispatch({type:'RESTORE_TOKEN_FAILURE'});
+                       showMessage({type: 'danger', icon: 'danger',message: "Please Verifier Votre Compte",position:'top',backgroundColor:'red'});
+                } else {
+                  await AsyncStorage.setItem('token',userInfo.token);
+                   await AsyncStorage.setItem('userId',userInfo.id);
+                   console.log('userId',userInfo.id);
+                   showMessage({type: 'danger', icon: 'danger',message: "BienVenu à Shopium",position:'top',backgroundColor:'green'});
+                  dispatch({type:'SIGN_IN',token:userInfo.token, id:userInfo.id});
+                }
               }
             },
             signOut: async ()=>{
@@ -157,7 +137,7 @@ const App = ({route})=>{
                dispatch({type:'SIGN_OUT'});
             },
             signUp: async (nom,prenom,ville,pays,email,password)=>{
-              const response =  await axios.post('http://192.168.64.48:8000/user/create',{nom,prenom,ville,pays,email,password});
+              const response =  await axios.post('http://192.168.155.145:8000/user/create',{nom,prenom,ville,pays,email,password});
               console.log('app sigUp',response.data);
               if (response.data.success){
                 const userInfo = response.data.user;
@@ -189,8 +169,6 @@ return (
               )}
               {
               !state.isLoggedIn ? (
-                // <RootStack.Screen name="auth" component={AuthNavigation}/>
-                  // AuthNavigation(RootStack)
                     <>
                     <RootStack.Screen name="login" component={LoginScreen} />
                     <RootStack.Screen name="signup" component={SignUpScreen} />
@@ -206,10 +184,6 @@ return (
         </AuthContext.Provider>
       </ProductsProvider>
       )
-    // <Provider store={store}>
-    //   <Route/>
-    //   <FlashMessage position={'top'}/>
-    // </Provider>
     );
   };
 export default App;

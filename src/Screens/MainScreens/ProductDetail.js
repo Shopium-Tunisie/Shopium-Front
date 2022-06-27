@@ -12,10 +12,10 @@ import Product from '../../components/Product';
 import ProductSwiper from '../../components/ProductSwiper';
 import { Text } from '../../components/Text';
 import { height, width } from '../../utils/Dimension';
-import { similarProducts } from '../../utils/FakeData';
-
+import { data, similarProducts } from '../../utils/FakeData';
+import * as axios from 'axios';
 const MAPHEIGHT = height * 0.2;
-
+const URL = "http://192.168.155.145:8000";
 const lorem =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore';
 const images = {
@@ -31,6 +31,8 @@ const ITEMWIDTH = width * 0.4;
 const ITEMHEIGHT = ITEMWIDTH * 1.5;
 
 const ProductInfo = ({route, navigation}) => {
+  let prod = route.params;
+  console.log({prodd:prod});
   useEffect(() => {
     navigation.getParent().setOptions({
       tabBarVisible: false,
@@ -91,14 +93,27 @@ const ProductInfo = ({route, navigation}) => {
     </View>
   );
 };
-
+let res ;
 const ProductDetail = ({navigation, route}) => {
+  const [product,setProduct] = useState(route.params.product);
+  const [offer,setOffer] = useState({});
+  useEffect(() => {
+    const loadoffer = async()=>{
+      const data = await axios.post(`${URL}/api/products/getofferByproduct`,{id:route.params.id});
+        console.log({data:data.data});
+        setOffer(data.data);
+        res =  data.data;
+        console.log({res})
+        return res;
+    };
+    let x=loadoffer();
+  },[route.params.id]);
   return (
     <View style={styles.container}>
       <ScrollView>
         <View>
           <View style={styles.swiperView}>
-            <ProductSwiper images={images} />
+            <ProductSwiper images={route.params.productImage} />
           </View>
           <View style={styles.firstChild}>
             <ProductInfo route={route} navigation={navigation} />
@@ -106,14 +121,14 @@ const ProductDetail = ({navigation, route}) => {
           <View style={styles.secondChild}>
             <AlignedText
               title="En savoir Plus"
-              description={lorem}
+              description={offer.description}
               titleSize={16}
               descriptionSize={14}
               bottomMargin={8}
             />
             <AlignedText
               title="Condition de L'offre"
-              description={lorem}
+              description={offer.condition}
               titleSize={16}
               descriptionSize={14}
             />

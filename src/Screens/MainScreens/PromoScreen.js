@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {
   View,
@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 
 import {FAKEDATA2} from '../../utils/FakeData';
-
+const URL = "http://192.168.155.145:8000";
 import { height, width } from '../../utils/Dimension';
 import ProductOffer from '../../components/ProductOffer';
-
+import * as axios from "axios";
 const BORDER_VALUE = 30;
 const PRODUCT_CONTAINER_HEIGHT = height * 0.72;
 const BACK_DROP_HEIGHT = height * 0.2;
@@ -64,29 +64,43 @@ const Header = (props) => {
         style={{position: 'absolute', left: 10}}
         onPress={props.onPress}
       /> */}
-      <Text style={{fontSize: 24, fontWeight: '700', color:'#000000'}}>Lorem</Text>
+      <Text style={{fontSize: 24, fontWeight: '700', color:'#000000'}}>Découvrire les Offres</Text>
     </View>
   );
 };
 const navigationDetail = ({navigation}) => {
   navigation.push('ProductDetail');
 };
+let offer;
 const ProductsContainer = (props) => {
+  const [prod,setProd]=useState([]);
+  useEffect(()=>{
+      const loadOffer = async () =>{
+          const data = await axios.post(`${URL}/api/products/`);
+          console.log({data:data.data});
+          offer = data.data;
+          setProd(offer);
+          return offer;
+      };
+      setProd(()=>{
+        loadOffer();
+      });
+    },[]);
   return (
     <View style={styles.productsContainer}>
       <FlatList
-        data={FAKEDATA2}
+        data={offer}
         contentContainerStyle={{marginTop: 20}}
         renderItem={({item}) => (
           <ProductOffer
-            productImage={item.image}
-            discountAmount={item.discountAmount}
+            productImage={item.photo[0]}
+            discountAmount={item.price}
             description={item.description}
-            productName={item.productName}
+            productName={item.name}
             onPress={()=>props.navigation.navigate('ProductDetail',{item})}
           />
         )}
-        keyExtractor={item => item.description}
+        keyExtractor={item => item._id}
       />
     </View>
   );

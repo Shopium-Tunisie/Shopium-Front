@@ -8,11 +8,9 @@ import BarcodeScanner from 'react-native-scan-barcode';
 const EmplacementScreen = () => {
   const [scanned,setScanned] = useState(false);
   const [text, setText] = useState('not yet Scanned');
-  const [hasPermission,setHasPermission]=useState(null);
+  const [hasPermission,setHasPermission] = useState(null);
   const cameraType = "back";
-  const askForPermissionCamera=async ()=>{
-    
-  }
+  const askForPermissionCamera=async ()=>{} 
   const hadleBarCodeScanner = ({type,data})=>{
     setScanned(true);
     setText(data);

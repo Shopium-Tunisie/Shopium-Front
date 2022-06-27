@@ -1,7 +1,8 @@
 {
     "cSpell.enableFiletypes": [
         "groovy",
-        "ignore"
+        "ignore",
+        "javascript"
     ],
     "cSpell.words": [
         "signin"

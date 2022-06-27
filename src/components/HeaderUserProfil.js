@@ -6,24 +6,56 @@ import {height, width} from '../utils/Dimension';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconMat from 'react-native-vector-icons/MaterialIcons';
 import ActionSheet from 'react-native-actionsheet';
-// import {launchImageLibrary,launchCamera} from 'react-native-image-picker';
-// import ImagePicker from 'react-native-image-crop-picker';
+
 const IMAGESIZE = width * 0.26;
 import { LogBox } from 'react-native';
 import { androidCameraPermission } from '../utils/permissions';
 import axios from 'axios';
 import AuthContext from '../tools/AuthContext';
-import ImageCropPicker from 'react-native-image-crop-picker';
-// import ImagePicker from 'react-native-image-picker';
-/* toggle includeExtra */
-// import * as ImagePicker from 'react-native-image-picker';
-
+import * as ImagePicker from "react-native-image-picker";
+const BaseURL = 'http://192.168.155.145:8000';
 const HeaderUserProfil = ({onPress,email,nom,prenom,photo}) => {
 const {userToken, userId} = useContext(AuthContext);
 console.log({userId: userId});
-console.log({photo:photo});
+let _id=userId;
+
+console.log({photo:photoo});
     const [photoo,setPhoto] = useState(photo);
-    console.log({photoo:photoo});
+    const getimagee = async(image)=>{
+          try {
+              console.log('h I m here');
+              const data = await axios.post(`${BaseURL}/user/imageupdate`,{_id,photo:image});
+              console.log(data.data);
+              setPhoto(data.data)
+          } catch (error) {
+            
+          }
+    }
+     const handleUpload = async(image)=>{
+    try {
+      const data = new FormData();
+      data.append('file',image);
+      data.append('upload_preset','shopium');
+      data.append('cloud_name','frouga');
+      data.append('api_key','197193114972462');
+  console.log({data});
+  var requestOptions = {
+    method: "POST",
+    body: data,
+    headers:{
+      'Accept':'application/json',
+      'Content-Type':'multipart/form-data',
+    },
+  };
+      await fetch("https://api.cloudinary.com/v1_1/frouga/image/upload",requestOptions).
+      then(res=>res.json())
+      .then(res=> getimagee(res.url))
+      // .then((res)=>setPhoto(res.url))
+      .catch(error=>console.log({errorUpload:error}));
+    } catch (error) {
+    }
+   
+  };
     const onSelectImage = async () => {
      const permissionStatus = await androidCameraPermission();
      if (permissionStatus || Platform.OS === 'ios') {
@@ -31,89 +63,84 @@ console.log({photo:photo});
          'Profile Picture',
          'Choose an option',
          [
-           { text: 'Camera', onPress:  onCamera },
-           { text: 'Gallery', onPress: onGallery },
+           { text: 'Camera', onPress:  cameraLaunch },
+           { text: 'Gallery', onPress: imageGalleryLaunch },
            { text: 'Cancel', onPress: () => { } },
          ]
        );
      }
    };
-
-    const onCamera = async () => {
-      await ImageCropPicker.openCamera({
-        compressImageMaxWidth: 300,
-        compressImageMaxheight: 400,
-        cropping: true,
-      }).then(image => {
-        console.log(image);
-        setPhoto(image.path);
-      });
+const cameraLaunch = () => {
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
     };
 
-    const onGallery = async() => {
-      try {
-       await ImageCropPicker.openPicker({
-          compressImageMaxWidth: 300,
-          compressImageMaxheight: 400,
-          cropping: true,
-        }).then(image => {
-          console.log('selected Image', image);
-          console.log({filename:image.path});
-          setPhoto(image.path);
-        });
-      } catch (error) {
-      console.log({error:error});
+    ImagePicker.launchCamera(options, (res) => {
+      console.log('Response = ', res.assets);
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
+      } else {
+        const uri = res.assets[0].uri;
+        console.log({uri});
+        const type = res.assets[0].type;
+        const name = res.assets[0].fileName;
+        console.log({source:uri});
+        console.log('response', JSON.stringify(res));
+        let newFile = {
+          uri,
+          type,
+          name,
+        };
+        console.log({newFile});
+        handleUpload(newFile);
       }
+    });
+  };
+  const imageGalleryLaunch = () => {
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
     };
-  //   const imageUpload = async (imagePath) => {
-  //  const formData = new FormData();
-  //  formData.append('file',{
-  //    uri:imagePath.path,
-  //    type:imagePath.mime,
-  //    name:imagePath.path,
-  //  });
-  //  console.log({formData:JSON.stringify(formData)});
-  //   try {
-  //     let res = await axios.put('http://192.168.4.48:8000/user/b',{id:userId,photo:formData});
-  //     console.log(res.data);
-  //   } catch (error) {
-  //     console.log({error});
-  //   }
-  // };
-  // const openGallery=async()=>{
-  //   try {
-      
-  //     const response = await ImagePicker.launchImageLibrary(options);
-  //     console.log(response.assets[0].uri);
-  //     const formData = new FormData();
-
-  //     formData.append('photo' ,{
-  //       uri:response.assets[0].uri,
-  //       type:response.assets[0].type,
-  //       name:response.assets[0].fileName,
-  //     });
-  //     const data = formData._parts[0];
-  //       setPhoto(data)
-  //         let res = await axios.put('http://192.168.201.48:8000/user/b',{id:userId,photo:data});
-  //         if (!res){
-  //           res.status(400).json({success:false,message:'error'});
-  //         } else {
-  //           res.status(200).json({success:true,message:'success',user:res});
-  //         }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   //   if (responseJson.status === 200) {
-  //   //     // eslint-disable-next-line no-alert
-  //   //     alert('Upload Successful');
-  //   //   } else {
-  //   //   //if no file selected the show alert
-  //   //   alert('Please Select File first');
-  //   // }
-  // }
+    ImagePicker.launchImageLibrary(options, (res) => {
+      console.log('Response = ', res.assets);
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
+      } else {
+        const uri = res.assets[0].uri;
+        console.log({uri});
+        const type = res.assets[0].type;
+        const name = res.assets[0].fileName;
+        console.log({source:uri});
+        console.log('response', JSON.stringify(res));
+        let newFile = {
+          uri,
+          type,
+          name,
+        };
+        console.log({newFile});
+        handleUpload(newFile);
+      }
+    });
+  };
+  
     useEffect(() => {
       LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-
+      console.log(photo)
   }, []);
 //   const takePhotoFromCamera = async ()=>{
 // try {
@@ -164,41 +191,13 @@ console.log({photo:photo});
            <IconMat onPress={onSelectImage} name ="mode-edit" color={'black'} size={25} />
           </View>
         </TouchableOpacity >
-        {/* <TouchableOpacity
-        style={Styles.btnStyle}
-        activeOpacity={0.8}
-        onPress={onSelectImage}
-      >
-        <Text style={Styles.textStyle}>select your image</Text>
-
-      </TouchableOpacity> */}
-            <Image source={{uri:photoo}}  style={{height:92,width:92,borderRadius:80}}  resizeMode="cover" resizeMethod="scale"/>
+            <Image source={{uri:photo}}  style={{height:92,width:92,borderRadius:80}}  resizeMode="cover" resizeMethod="scale"/>
         </View>
         <View>
           <Text style={{marginHorizontal:width / 10,fontSize:17,fontWeight:'bold'}}> {nom} {prenom} </Text>
           <Text style={{marginHorizontal:width / 19,fontSize:17,fontWeight:'400'}}> {email} </Text>
           </View>
         </View>
-        {/* <ActionSheet
-        ref={actionsheet}
-        title={'choose from  : '}
-        options={BUTTONS}
-        cancelButtonIndex={2}
-        useNativeDriver={true}
-        onPress={(index)=>{
-          switch (index){
-            case 0:
-              takePhotoFromCamera();
-            break;
-            case 1:
-              takePhotoFromGallery();
-            break;
-            default:
-            break;
-          }
-        }}
-
-        /> */}
     </ScrollView>
   );
 };

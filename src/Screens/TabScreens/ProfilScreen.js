@@ -14,7 +14,8 @@ import SheetButton from '../../components/SheetButton';
 import { height } from '../../utils/Dimension';
 import AuthContext from '../../tools/AuthContext';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+const URL = 'http://192.168.155.145:8000';
+
 const ProfilScreen =  ({navigation,route}) => {
     const [user,setUser] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
@@ -28,27 +29,37 @@ console.log({userId: userId});
     const functionCombinedSecond = () => {
         setModalVisible(!modalVisible);
     };
+        const loadData = async ()=>{
+  try {
+  const response = await axios.post(`${URL}/user/getMe`,{id:userId});
+        console.log({resUpdateUser:response.data.user});
+        setUser(response.data.user);
+  } catch (error) {
+    console.log({error});
+  }
+};
     useEffect(()=>{
-            const userInfo = async()=>{
-                        let userInf;
-                        try {
-                             const user1 = await axios.post('http://192.168.64.48:8000/user/me',{token:userToken});
-                             console.log({user1:user1.data});
-                             if (!user){
-                                 console.log('error');
-                             } else {
-                                 userInf = user1.data.user;
-                                 console.log({userInfo:userInf.photo});
-                                   setUser(userInf);
-                                 console.log({userInf:userInf});
-                             }
-                        } catch (error1) {
-                           console.log({error1});
-                        }
-                       //  console.log('user', response);
-                       //  setUser(response);
-                    };
-            userInfo();
+            // const userInfo = async()=>{
+            //             let userInf;
+            //             try {
+            //                  const user1 = await axios.post(`${URL}/user/me`,{token:userToken});
+            //                  console.log({user1:user1.data});
+            //                  if (!user){
+            //                      console.log('error');
+            //                  } else {
+            //                      userInf = user1.data.user;
+            //                      console.log({userInfo:userInf.photo});
+            //                        setUser(userInf);
+            //                      console.log({userInf:userInf});
+            //                  }
+            //             } catch (error1) {
+            //                console.log({error1});
+            //             }
+            //            //  console.log('user', response);
+            //            //  setUser(response);
+            //         };
+            // userInfo();
+            loadData();
         },[]);
   return (
        <ScrollView

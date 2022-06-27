@@ -9,7 +9,7 @@ import AuthContext from '../tools/AuthContext';
 import {Button} from './Button';
 import {Input} from './Input';
 import {Text} from './Text';
-
+const URL = "http://192.168.155.145:8000";
 const ModalView = ({visible, handleToggle, toggleChecked, checked,navigation}) => {
   const {userToken, userId} = useContext(AuthContext);
   const [numero,setNumero] = useState(null);
@@ -22,7 +22,7 @@ console.log({userToken: userToken});
   const loadData = async ()=>{
      console.log({ID:userId});
     try {
-    const response = await axios.post('http://192.168.64.48:8000/rib/ribbyuser',{userId});
+    const response = await axios.post(`${URL}/rib/ribbyuser`,{userId});
           console.log({res:response.data.ripUser});
     } catch (error) {
       console.log({error});
@@ -30,7 +30,7 @@ console.log({userToken: userToken});
 };
   const AddRib = async()=>{
     try {
-      const addRib = await axios.post('http://192.168.64.48:8000/rib/add',{userId:userId,numero:numero,key:cvv,nom:nom,banque:banque,expDate:date});
+      const addRib = await axios.post(`${URL}/rib/add`,{userId:userId,numero:numero,key:cvv,nom:nom,banque:banque,expDate:date});
       if (!addRib){
       } else {
         console.log(addRib.data);
@@ -115,38 +115,7 @@ console.log({userToken: userToken});
         />
          </View>
         </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-         <View style={{width:'70%'}}>
-         <Input
-          placeholder="Exp Date"
-           placeholderTextColor='red'
-          inputTextColor="black"
-           borderColor={"black"}
-          style={{
-            backgroundColor: '#F2F2F2',
-            justifyContent: 'flex-start',
-           
-          }}
-          
-         onChangeText={(date)=>setDate(date)}
-        />
-         </View>
-         <View style={{width:'30%'}}>
-        <Input
-          placeholder="CVV"
-           borderColor={"black"}
-           placeholderTextColor='red'
-          inputTextColor="black"
-          style={{
-            backgroundColor: '#F2F2F2',
-            justifyContent: 'flex-start',
-          }}
-          
-         onChangeText={(cvv)=>setCvv(cvv)}
-        />
-         </View>
-        </View>
-          <Text text="Utiliser ce RIB" style={[styles.text,{fontSize: 16}]} colorText={'black'} />
+          <Text text="Utiliser ce RIB" style={[styles.text,{fontSize: 16,top:10}]} colorText={'black'} />
         <View
           style={{
             flexDirection: 'row',

@@ -8,7 +8,7 @@ import { Button } from '../../components/Button';
 import { Dimensions } from 'react-native';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import { showError, showSuccess } from '../../tools/helperFunction';
-
+const URL = "http://192.168.155.145:8000";
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState('');
   const SendButton = async () => {
@@ -18,7 +18,7 @@ const ForgotPassword = ({navigation}) => {
       }
       console.log(email);
       const {data} = await axios.post(
-        'http://192.168.0.48:8000/user/forgot-password',
+        `${URL}/user/forgot-password`,
         {email},
       );
       console.log(data);

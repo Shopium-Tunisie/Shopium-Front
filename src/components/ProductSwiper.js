@@ -15,7 +15,7 @@ const ProductSwiper = ({images}) => {
         loop={false}>
         <View>
           <Image
-            imageSource={images.first}
+            imageSource={images}
             resizeMode="contain"
             containerStyle={{height: '100%'}}
           />
@@ -30,7 +30,7 @@ const ProductSwiper = ({images}) => {
 
         <View>
           <Image
-            imageSource={images.second}
+            imageSource={images}
             resizeMode="contain"
             containerStyle={{height: '100%'}}
           />
@@ -45,7 +45,7 @@ const ProductSwiper = ({images}) => {
 
         <View>
           <Image
-            imageSource={images.third}
+            imageSource={images}
             resizeMode="contain"
             containerStyle={{height: '100%'}}
           />

@@ -20,6 +20,7 @@ import SendInvit from '../../../Screens/ProfileScreen/SendInvit';
 import Notification from '../../../Screens/MainScreens/Notification';
 const Stack = createStackNavigator();
 const ProfilStack = () => {
+
   return (
     <Stack.Navigator
       screenOptions={{headerStyle: {elevation: 0, shadowOpacity: 0}}}>

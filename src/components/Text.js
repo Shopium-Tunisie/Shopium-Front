@@ -12,6 +12,7 @@ export const Text = ({text, weight, colorText, style, containerStyle}) => {
     color: theColor,
     textAlign: 'center',
     fontFamily: 'Roboto',
+    fontSize:12,
   };
 
   return (

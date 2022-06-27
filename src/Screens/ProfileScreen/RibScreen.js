@@ -1,23 +1,27 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, Image, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, FlatList, Image, SafeAreaView, ScrollView, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import {lorem} from '../../tools/helper';
 import ModalView from '../../components/ModelView';
 import RibBox from '../../components/RibBox';
 // import {Text} from '../../components/Text';
-import LinearGradient from "react-native-linear-gradient";
 import IconFeather from 'react-native-vector-icons/Feather';
 import axios from 'axios';
 import AuthContext from '../../tools/AuthContext';
 import {Text}from "react-native";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Inputs from '../../components/Inputs';
+const URL = "http://192.168.155.145:8000";
 const RibScreen = ({navigation}) => {
   const [visibleOverLay, setVisibleOverLay] = useState(false);
   const [data,setData] = useState([]);
   const [details, setDetails] = useState([]);
   const [user,setUser] = useState();
-const [checked, setChecked] = useState(false);
+  const [nom, setNom] = useState();
+  const [numero, setNumero] = useState();
+    const [id, setId] = useState();
+  const [banque, setBanque] = useState();
+  const [checked, setChecked] = useState(false);
   const {userId} = useContext(AuthContext);
    console.log({ID:userId});
     const [refreshing, setRefreshing] = useState(true);
@@ -31,7 +35,7 @@ const [checked, setChecked] = useState(false);
   const loadData = async ()=>{
      console.log({ID:userId});
     try {
-    const response = await axios.post('http://192.168.64.48:8000/rib/ribbyuser',{userId});
+    const response = await axios.post(`${URL}/rib/ribbyuser`,{userId});
           console.log({res:response.data.ripUser});
            setData(response.data.ripUser);
            setLoading(false);
@@ -42,7 +46,7 @@ const [checked, setChecked] = useState(false);
   const loadDataUser = async ()=>{
      console.log({ID:userId});
     try {
-    const response = await axios.post('http://192.168.64.48:8000/user/getme',{id:userId});
+    const response = await axios.post(`${URL}/user/getme`,{id:userId});
            setUser(response.data.user);
            setLoading(false);
            console.log({user});
@@ -50,10 +54,15 @@ const [checked, setChecked] = useState(false);
       console.log({error});
     }
 };
+const modifier = async(idRib)=>{
+  console.log({idRib});
+  const response = await axios.post(`${URL}/rib/modifier`,{userId:userId,_id:idRib,nom:nom,numero:numero,banque:banque})
+  console.log(response.data);
+  loadData();
+};
 useEffect(() => {
   loadData();
   loadDataUser();
-  // console.log({data1:data.data});
   setLoading(!loading);
   console.log(user);
 }, []);
@@ -64,14 +73,14 @@ const renderItem = ({item}) => {
         <View style={[styles.card, {backgroundColor:"#8961EE"}]}>
           <View style={{flexDirection:'row',justifyContent:'space-between'}}>
             <View style={{width:'40%'}}>
-          <Text style={{fontSize: 28, fontWeight: 'bold', color: '#fff'}}>
+          <Text style={{fontSize: 28, fontWeight: 'bold', color: '#fff'}}   >
             {item.banque}
           </Text>
             </View>
             <View style={{width:'35%'}}>
            <Image
-              source={require('../../assets/images/visa.png')}
-              style={{height: 60, width: 110, resizeMode: 'contain'}}
+              source={require('../../assets/images/RIB.png')}
+              style={{height: 80, width: 200, resizeMode: 'contain'}}
             />
             </View>
           </View>
@@ -93,41 +102,12 @@ const renderItem = ({item}) => {
             <Text style={{fontSize: 22, fontWeight: 'bold', color: '#fff'}}>
               {item.nom}
             </Text>
-            <Text style={{fontSize: 22, fontWeight: 'bold', color: '#fff'}}>
-              {item.expDate}
-            </Text>
-           
           </View>
         </View>
       </TouchableOpacity>
     );
   };
 
-  // return (
-  //   <SafeAreaView style={{flex: 1, backgroundColor: 'grey', padding:10}}>
-  //     
-      
-  //     <ModalView
-  //       visible={visibleOverLay}
-  //       handleToggle={handleToggle}
-  //       checked={checked}
-  //       toggleChecked={toggleCheckBox}
-  //       />
-  //   <View style={styles.icon}>
-  //       <IconFeather
-  //         name="plus"
-  //         size={24}
-  //         color="white"
-  //         onPress={() => {
-  //           setVisibleOverLay(!visibleOverLay);
-  //         }}
-  //       />
-  //   </View>
-  //   </SafeAreaView>
-
-
-
-  // );
    return (
     <View style={styles.conatiner}>
       <View >
@@ -149,23 +129,22 @@ const renderItem = ({item}) => {
       <View style={{paddingHorizontal: 30}}>
         <Text style={styles.textLabel}>Card Number</Text>
         <View style={styles.textView}>
-          <Text style={styles.text}>{details.numero}</Text>
+          <TextInput style={styles.text} onChangeText={numero=>setNumero(numero)} defaultValue={details.numero}/>
         </View>
         <Text style={styles.textLabel}>Nom</Text>
         <View style={styles.textView}>
-          <Text style={styles.text}>{details.nom}</Text>
+          <TextInput 
+          style={styles.text}
+          onChangeText={(nom)=>setNom(nom)}
+          defaultValue={details.nom}
+          />
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <View style={{width:'40%'}}>
-            <Text style={styles.textLabel}>Expiry date</Text>
+            <Text style={styles.textLabel}>Banque</Text>
             <View style={[styles.textView]}>
-              <Text style={styles.text}>{details.expDate}</Text>
-            </View>
-          </View>
-          <View style={{width:'45%'}}>
-            <Text style={styles.textLabel}>CVV</Text>
-            <View style={[styles.textView]}>
-              <Text style={styles.text}>{details.key}</Text>
+              <TextInput style={styles.text} onChangeText={banque=>setBanque(banque)} defaultValue={details.banque}/>
+              <TextInput style={[styles.text,{width:0,height:0}]} defaultValue={details._id}/>
             </View>
           </View>
         </View>
@@ -179,7 +158,7 @@ const renderItem = ({item}) => {
         }}
       />
   </View>
-    <TouchableOpacity style={[styles.textView, {backgroundColor:'#EE2A90', alignItems:'center', marginVertical:30}]}>
+    <TouchableOpacity  onPress={()=>modifier(details._id)} style={[styles.textView, {backgroundColor:'#EE2A90', alignItems:'center', marginVertical:30}]}>
         <Text style={[styles.text, {color:'#fff'}]}>Modifier</Text>
         </TouchableOpacity>
       </View>

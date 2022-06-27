@@ -6,6 +6,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import {Swipeable} from "react-native-gesture-handler";
+const URL = "http://192.168.155.145:8000";
 const marginBottomItem = 20;
 const paddingItem = 10;
 const imgHeight = 100;
@@ -34,7 +35,7 @@ const acceptAmi = async()=>{
   try {
     const id = await AsyncStorage.getItem('userId');
     console.log({id});
-    const response = await axios.post('http://192.168.64.48:8000/user/accept',{id:id});
+    const response = await axios.post(`${URL}/user/accept`,{id:id});
       console.log(response);
   } catch (error) {
       console.log(error);

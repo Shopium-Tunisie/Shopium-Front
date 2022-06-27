@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState,useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 // import { useNavigation } from "@react-navigation/native";
@@ -9,13 +9,16 @@ import ParametresTouchables from '../components/ParametresTouchables';
 import { Button } from '../components/Button';
 import { height } from '../utils/Dimension';
 import AuthContext from '../tools/AuthContext';
-
+import * as axios from 'axios';
 
 const ParametreScreen = ({navigation,route}) => {
   const [transferMethods, setTransferMethods] = useState(list);
   const [moneyList, setMoneyList] = useState(deviseList);
   const [transferMethod, setTransferMethod] = useState(transferMethods[0]);
   const { user } = route.params;
+  const {userToken,userId} = useContext(AuthContext);
+        console.log({userToken:userToken});
+        console.log({userId:userId});
   const handleToggle = i => {
     let arr = moneyList;
     arr[i].selected = !arr[i].selected;

@@ -38,10 +38,10 @@ const Offre = ({setPromoMessage}) => {
             });
           }}
         />
-        {/* <Button
+        <Button
           size="extraSmall"
           text="Fermer"
-          color="transparent"
+          color="black"
           theTextColor="white"
           textStyle={{fontSize: BUTTON_HEIGHT / 2.2}}
           style={{
@@ -52,7 +52,7 @@ const Offre = ({setPromoMessage}) => {
           onPress={() => {
             setPromoMessage(false);
           }}
-        /> */}
+        />
       </View>
     </View>
     );

@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const image = 'https://i.ibb.co/1XbHTbT/Artboard-3.png';
 import AuthContext from '../../tools/AuthContext';
 import axios from 'axios';
+const URL = "http://192.168.155.145:8000";
 const Parrainage = ({navigation},porps) => {
         const {userToken,userId} = useContext(AuthContext);
                 const [me,setMe] = useState();
@@ -16,7 +17,7 @@ const Parrainage = ({navigation},porps) => {
             try {
               const id = await AsyncStorage.getItem('userId');
               console.log({useid:id});
-              const user = await axios.post('http://192.168.64.48:8000/user/getMe',{id:id});
+              const user = await axios.post(`${URL}/user/getMe`,{id:id});
               console.log({user:user.data.user.codeParrainage});
               setMe(user.data.user.codeParrainage);
               console.log(me);

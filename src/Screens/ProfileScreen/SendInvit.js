@@ -7,6 +7,7 @@ import ButtonWithLoader from '../../components/ButtonWithLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {Swipeable} from 'react-native-gesture-handler';
+const URL = "http://192.168.155.145:8000";
 const marginBottomItem = 20;
 const paddingItem = 10;
 const imgHeight = 100;
@@ -25,7 +26,7 @@ const getAmi = async () =>{
     try {
         const id = await AsyncStorage.getItem('userId');
             console.log({useid:id});
-            const response = await axios.post('http://192.168.64.48:8000/user/ami',{id});
+            const response = await axios.post(`${URL}/user/ami`,{id});
             console.log({response:response.data.data.sendRequest});
             setData(response.data.data);
             setRefreshing(false);
@@ -40,7 +41,7 @@ const sendRequest = async () =>{
             const id = await AsyncStorage.getItem('userId');
             console.log({useid:id});
             console.log(codeParrainage);
-            const data = await axios.post('http://192.168.64.48:8000/user/parrainage',{codeParrainage,id});
+            const data = await axios.post(`${URL}/user/parrainage`,{codeParrainage,id});
             console.log(data);
             alert('Success',{
                  cancelable: true,
