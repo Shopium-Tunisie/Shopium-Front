@@ -13,7 +13,8 @@ import { androidCameraPermission } from '../utils/permissions';
 import axios from 'axios';
 import AuthContext from '../tools/AuthContext';
 import * as ImagePicker from "react-native-image-picker";
-const BaseURL = 'http://192.168.155.145:8000';
+import { API_BASE_URL as URL} from '../config/urls';
+
 const HeaderUserProfil = ({onPress,email,nom,prenom,photo}) => {
 const {userToken, userId} = useContext(AuthContext);
 console.log({userId: userId});

@@ -14,9 +14,10 @@ import { Discount } from './Discount';
 import Description from './Descreption';
 import Icon from 'react-native-vector-icons/Feather';
 import axios from 'axios';
-const URL = "http://192.168.155.145:8000";
+
 const HEART_CONTAINER_SIZE = 30;
 import { useProductsStateValue } from '../../tools/ProductContext';
+import { API_BASE_URL as URL } from '../config/urls';
 export const link =
   'https://www.nesquik.com/sites/site.prod1.nesquik.com/files/products/nesquik_no_sugar_added_chocolate_cocoa_powder_16_oz._tub__chocolate_milk_powderPNG';
 

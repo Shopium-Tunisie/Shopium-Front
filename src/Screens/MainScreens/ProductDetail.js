@@ -14,8 +14,8 @@ import { Text } from '../../components/Text';
 import { height, width } from '../../utils/Dimension';
 import { data, similarProducts } from '../../utils/FakeData';
 import * as axios from 'axios';
+import { API_BASE_URL as URL } from '../../config/urls';
 const MAPHEIGHT = height * 0.2;
-const URL = "http://192.168.155.145:8000";
 const lorem =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore';
 const images = {

@@ -74,9 +74,10 @@ const ParametreScreen = ({navigation,route}) => {
         }}
       />
       <Button
-      title={'LOGOUT'}
+      text={'LOGOUT'}
      size="medium"
      theTextColor={'white'}
+
      onPress={()=>signOut()}
       />
     </View>

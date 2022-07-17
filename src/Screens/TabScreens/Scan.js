@@ -9,7 +9,7 @@ import AuthContext from '../../tools/AuthContext';
 import { Input } from '../../components/Input';
 import { Overlay} from "react-native-elements";
 import { Button } from '../../components/Button';
-const URL = 'http://192.168.155.145:8000';
+import {API_BASE_URL as URL } from '../../config/urls';
 const Scan = (props,{route})=>{
   const [scanned,setScanned] = useState(false);
     const [visible,setVisible] = useState(true);
@@ -93,13 +93,13 @@ useEffect(()=>{
                 <View style={{padding:5,alignItems:'center'}} >
               <Text key={`key- ${item._id}`} style={{color:'red',position:'relative' , justifyContent:'center',fontSize:18,fontWeight:'bold'}} >{item.nom}</Text>
                </View>
-              <TouchableOpacity onPress={toggleOverlay} key={item._id}>
+              <TouchableOpacity onPress={toggleOverlay} key={item.data}>
               <Barcode
                 format={format}
                 value={item.data}
                 text={item.data}
                 style={{ marginBottom: 30,marginTop:10 }}
-                key={item._id}
+                key={item.data}
                 maxWidth={Dimensions.get('window').width / 2}
                  />
               </TouchableOpacity>

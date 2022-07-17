@@ -8,7 +8,7 @@ import { Button } from '../../components/Button';
 import { Dimensions } from 'react-native';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import { showError, showSuccess } from '../../tools/helperFunction';
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL as URL } from '../../config/urls';
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState('');
   const SendButton = async () => {

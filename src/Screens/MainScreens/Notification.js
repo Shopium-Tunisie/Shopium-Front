@@ -6,7 +6,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import {Swipeable} from "react-native-gesture-handler";
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL as URL } from '../../config/urls';
 const marginBottomItem = 20;
 const paddingItem = 10;
 const imgHeight = 100;
@@ -21,7 +21,7 @@ const Notification = (props) => {
     try {
         const id = await AsyncStorage.getItem('userId');
             console.log({useid:id});
-            const response = await axios.post('http://192.168.63.48:8000/user/requestfriend',{id});
+            const response = await axios.post(`${URL}/user/requestfriend`,{id});
             console.log({response:response.data});
             setData(response.data.data);
             console.log(data);

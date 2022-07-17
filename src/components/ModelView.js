@@ -5,11 +5,12 @@ import React, { useContext, useState } from 'react';
 import {StyleSheet, View} from 'react-native';
 import {CheckBox, Overlay, Rating} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/EvilIcons';
+import { API_BASE_URL as URL } from '../config/urls';
 import AuthContext from '../tools/AuthContext';
 import {Button} from './Button';
 import {Input} from './Input';
 import {Text} from './Text';
-const URL = "http://192.168.155.145:8000";
+
 const ModalView = ({visible, handleToggle, toggleChecked, checked,navigation}) => {
   const {userToken, userId} = useContext(AuthContext);
   const [numero,setNumero] = useState(null);

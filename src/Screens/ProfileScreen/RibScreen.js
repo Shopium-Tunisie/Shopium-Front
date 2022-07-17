@@ -11,7 +11,8 @@ import axios from 'axios';
 import AuthContext from '../../tools/AuthContext';
 import {Text}from "react-native";
 import Inputs from '../../components/Inputs';
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL  as URL} from '../../config/urls';
+
 const RibScreen = ({navigation}) => {
   const [visibleOverLay, setVisibleOverLay] = useState(false);
   const [data,setData] = useState([]);

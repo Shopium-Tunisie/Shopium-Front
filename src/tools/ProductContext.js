@@ -2,9 +2,8 @@
 import axios from 'axios';
 import React, {createContext, useContext, useState,useEffect} from 'react';
 
-const URL = "http://192.168.155.145:8000";
 const ProductsContext = createContext();
-
+import {API_BASE_URL as URL } from '../config/urls';
 const ProductsProvider = ({children}) => {
   const [products, setProducts] = useState([]);
   const getProduits = async()=>{

@@ -9,8 +9,8 @@ import { Input } from '../../components/Input';
 import { Text } from '../../components/Text';
 import { Button } from '../../components/Button';
 import axios from 'axios';
-const URL = "http://192.168.155.145:8000";
 import AuthContext from '../../tools/AuthContext';
+import { API_BASE_URL as URL } from '../../config/urls';
 export const screenWidth = Math.round(Dimensions.get('window').width);
 export const screenHeight = Math.round(Dimensions.get('window').height);
 const InfoPersonel = ({navigation,route}) => {

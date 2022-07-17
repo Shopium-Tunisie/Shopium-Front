@@ -1,17 +1,15 @@
 /* eslint-disable prettier/prettier */
 import {ActivityIndicator, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import { color } from 'react-native-reanimated';
 
 const ButtonWithLoader = ({
   text,
    onPress,
     isLoading,
-    
   }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.btnStyle]}>
-      {!!isLoading ? <ActivityIndicator size="large" color="white" /> : <Text style={styles.textStyle}>{text}</Text>}
+      {isLoading ? <ActivityIndicator size="large" color="black" /> : <Text style={styles.textStyle}>{text}</Text>}
     </TouchableOpacity>
   );
 };
@@ -24,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     borderRadius:10,
-    backgroundColor:'white'
+    backgroundColor:'white',
   },
   textStyle: {
     fontSize: 17,

@@ -16,7 +16,7 @@ import React,{useState,useEffect, useReducer, useMemo} from 'react';
 import OnboardingScreen from './src/Screens/authScreens/OnboardingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TabNavigation from './src/routes/TabNavigation/tabNavigation';
-
+import { API_BASE_URL } from './src/config/urls';
 import ProductsProvider from './src/tools/ProductContext';
 
 import AuthContext from './src/tools/AuthContext';
@@ -114,7 +114,7 @@ const App = ({route})=>{
       const authContext = useMemo(
          ()=>({
             signIn: async (email,password)=>{
-               const response = await axios.post('http://192.168.155.145:8000/user/signin',{email,password});
+               const response = await axios.post(`${API_BASE_URL}/user/signin`,{email,password});
               console.log('App singIn', response.data.user);
               if (response.data.success){
                 const userInfo = response.data;
@@ -137,7 +137,7 @@ const App = ({route})=>{
                dispatch({type:'SIGN_OUT'});
             },
             signUp: async (nom,prenom,ville,pays,email,password)=>{
-              const response =  await axios.post('http://192.168.155.145:8000/user/create',{nom,prenom,ville,pays,email,password});
+              const response =  await axios.post(`${API_BASE_URL}user/create`,{nom,prenom,ville,pays,email,password});
               console.log('app sigUp',response.data);
               if (response.data.success){
                 const userInfo = response.data.user;

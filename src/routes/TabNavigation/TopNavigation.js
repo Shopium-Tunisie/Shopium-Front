@@ -12,9 +12,10 @@ import {width} from '../../utils/Dimension';
 import Product from '../../components/Product';
 import { useProductsStateValue } from '../../tools/ProductContext';
 import * as axios from 'axios';
+import { API_BASE_URL as URL } from '../../config/urls';
 const ITEMWIDTH = width * 0.45;
 const ITEMHEIGHT = ITEMWIDTH * 1.4;
-const URL = 'http://192.168.155.145:8000';
+
 const Tab = createMaterialTopTabNavigator();
 
 // const PourVous = props => {
@@ -40,7 +41,7 @@ const Tab = createMaterialTopTabNavigator();
 //     </View>
 //   );
 // };
-const Tous = props => {   
+const Tous = props => {
   const {products} = useProductsStateValue();
   console.log(products);
   const [fabricant,setFabricant] = useState();

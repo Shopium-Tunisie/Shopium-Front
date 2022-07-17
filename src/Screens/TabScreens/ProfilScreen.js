@@ -5,8 +5,6 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import IconFont from 'react-native-vector-icons/FontAwesome';
 import IconFont5 from 'react-native-vector-icons/FontAwesome5';
-import IconMaterial from 'react-native-vector-icons/MaterialIcons';
-import IconMaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 import HeaderUserProfil from '../../components/HeaderUserProfil';
 import Description from '../../components/Descreption';
 import ProfilBottomBtn from '../../components/ProfilBottomBtn';
@@ -14,8 +12,7 @@ import SheetButton from '../../components/SheetButton';
 import { height } from '../../utils/Dimension';
 import AuthContext from '../../tools/AuthContext';
 import axios from 'axios';
-const URL = 'http://192.168.155.145:8000';
-
+import {API_BASE_URL as URL} from '../../config/urls';
 const ProfilScreen =  ({navigation,route}) => {
     const [user,setUser] = useState({});
   const [modalVisible, setModalVisible] = useState(false);

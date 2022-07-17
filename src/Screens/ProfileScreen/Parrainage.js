@@ -9,7 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const image = 'https://i.ibb.co/1XbHTbT/Artboard-3.png';
 import AuthContext from '../../tools/AuthContext';
 import axios from 'axios';
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL as URL } from '../../config/urls';
+
 const Parrainage = ({navigation},porps) => {
         const {userToken,userId} = useContext(AuthContext);
                 const [me,setMe] = useState();

@@ -9,11 +9,12 @@ import AuthContext from '../../tools/AuthContext';
 import { showSuccess } from '../../tools/helperFunction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {showMessage} from 'react-native-flash-message';
-const URL = 'http://192.168.155.145:8000';
+
 import  * as axios from 'axios';
 import Loader from '../../components/Loader';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import { API_BASE_URL  as URL} from '../../config/urls';
 const SignUpScreen = ({route,navigation})=> {
     const [nom,setNom] = useState(null);
     const [prenom, setPreNom] = useState(null);
@@ -63,7 +64,7 @@ const SignUpScreen = ({route,navigation})=> {
     setIsLoading(true);
     setTimeout(async function() {
         setIsLoading(false);
-        await signUp(inputs.nom,inputs.prenom,inputs.ville,inputs.pays,inputs.email,inputs.password);
+        await signUp(nom,prenom,ville,pays,email,password);
         const idUser = await AsyncStorage.getItem('userId');
         console.log({idUser});
         const id = idUser;
@@ -126,15 +127,15 @@ const handlerError = (errorMessage,input)=>{
     setErrors((prevState)=>({...prevState,[input]:errorMessage}));
 };
 const handleSubmit=values=>{
-      console.log(values.email,values.password,values.nom,values.prenom,values.ville);
-      signUp(values.nom,values.prenom,values.ville,values.pays,values.email,values.password);
+      console.log(email,password,nom,prenom,ville);
+      signUp(nom,prenom,ville,pays,email,password);
     };
   return (
-    <Formik
-    validationSchema={SignUpSchema}
-    initialValues={{ email: '',password:'',pays:'',ville:'',nom:'',prenom:'' }}
-     onSubmit={values => signUp(values.nom,values.prenom,values.ville,values.pays,values.email,values.password)} >
-         {({ handleChange, handleBlur, handleSubmit, values,errors,touched }) => (
+    // <Formik
+    // validationSchema={SignUpSchema}
+    // initialValues={{ email: '',password:'',pays:'',ville:'',nom:'',prenom:'' }}
+    //  onSubmit={values => signUp(values.nom,values.prenom,values.ville,values.pays,values.email,values.password)} >
+    //      {({ handleChange, handleBlur, handleSubmit, values,errors,touched }) => (
     <SafeAreaView style={styles.root}>
         <Loader visible={isLoading}/>
         <ScrollView style={styles.container}>
@@ -150,8 +151,8 @@ const handleSubmit=values=>{
                                 <View>
                                     <Input
                                         size="normal"
-                                        onChangeText={handleChange('nom')}
-                                        value={values.nom}
+                                        onChangeText={(nom)=>setNom(nom)}
+                                        value={nom}
                                         autoFocus
                                         borderColor="white"
                                         placeholder={'Nom'}
@@ -159,7 +160,7 @@ const handleSubmit=values=>{
                                             alignSelf: 'flex-start',
                                             right:10,
                                         }}
-                                            error={touched.nom && errors.nom}
+                                            error={errors.nom}
                                             onFocus={()=>{
                                             handlerError(null,'nom');
                                                 }}
@@ -169,8 +170,8 @@ const handleSubmit=values=>{
                                 <View style={{marginLeft:6}}>
                                     <Input
                                         size="normal"
-                                        onChangeText={handleChange('prenom')}
-                                        value={values.prenom}
+                                        onChangeText={(prenom)=>setPreNom(prenom)}
+                                        value={prenom}
                                         containerStyle={{ alignSelf: 'center' }}
                                         borderColor="white"
                                             placeholder={'Prenom'}
@@ -178,7 +179,7 @@ const handleSubmit=values=>{
                                             alignSelf: 'flex-start',
                                         }}
                                         // style={{ color: 'black' }}
-                                         error={touched.prenom && errors.prenom}
+                                         error={errors.prenom}
                                         onFocus={()=>{
                                          handlerError(null,'prenom');
                                                 }}
@@ -190,26 +191,26 @@ const handleSubmit=values=>{
             <View>
                   <Input placeholder="pays"
                    icon="email-outline"
-                    value={values.pays}
-                       onChangeText={handleChange('pays')}
-                      error={touched.pays && errors.pays}
+                    value={pays}
+                       onChangeText={(pays)=>setPays(pays)}
+                      error={errors.pays}
                      onFocus={()=>{
                         handlerError(null,'pays');
                      }} />
                    <Input placeholder="ville"
                     icon="email-outline"
-                    value={values.ville}
-                       onChangeText={handleChange('ville')}
-                      error={touched.ville && errors.ville}
+                    value={ville}
+                       onChangeText={(ville)=>setVille(ville)}
+                      error={errors.ville}
                      onFocus={()=>{
                         handlerError(null,'ville');
                      }}/>
                     <Input
                      placeholder="Email"
                      icon="email-outline"
-                     value={values.email}
-                      onChangeText={handleChange('email')}
-                     error={touched.email && errors.email}
+                     value={email}
+                      onChangeText={(email)=>setEmail(email)}
+                     error={errors.email}
                      onFocus={()=>{
                         handlerError(null,'email');
                      }}
@@ -217,25 +218,24 @@ const handleSubmit=values=>{
                      />
                     <Input placeholder="mot de passe"
                      icon="lock-outline"
-                     value={values.password}
-                     onChangeText={handleChange('password')}
+                     value={password}
+                     onChangeText={(password)=>setPassword(password)}
                       error={errors.password}
                       password
                      onFocus={()=>{
                         handlerError(null,'password');
                     }}
                      />
-                   <Input placeholder="confirmer mot de passe" iconName="lock-outline"/>
                    <View style={{marginTop:30}}/>
-                  <ButtonWithLoader text={'Crée Un Compte'} onPress={()=>handleSubmit()} isLoading={isLoading}/>
+                  <ButtonWithLoader text={'Crée Un Compte'} onPress={()=>onClickSignup()} isLoading={isLoading}/>
                   <View style={{marginTop:30}}>
                   <Text  onPress={() => navigation.navigate('login')} style={{color:'#ffffff',fontSize:16, fontStyle:'normal',fontWeight:'400',alignItems:'center',lineHeight:18, textAlign:'center'}}>Vous avez déja un compte ? Connectez-vous</Text>
                   </View>
             </View>
         </ScrollView>
     </SafeAreaView>
-    )}
-    </Formik>
+    // )}
+    // </Formik>
   );
 };
 

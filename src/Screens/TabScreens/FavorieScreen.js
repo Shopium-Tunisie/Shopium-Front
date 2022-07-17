@@ -9,7 +9,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import Product from '../../components/Product';
 import * as axios from "axios" ;
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL  as URL} from '../../config/urls';
 const ITEMWIDTH = width * 0.45;
 const ITEMHEIGHT = ITEMWIDTH * 1.4;
 export const DELAY = 250;

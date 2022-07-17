@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 
 import {FAKEDATA2} from '../../utils/FakeData';
-const URL = "http://192.168.155.145:8000";
 import { height, width } from '../../utils/Dimension';
 import ProductOffer from '../../components/ProductOffer';
-import * as axios from "axios";
+import * as axios from 'axios';
+import { API_BASE_URL as URL} from '../../config/urls';
 const BORDER_VALUE = 30;
 const PRODUCT_CONTAINER_HEIGHT = height * 0.72;
 const BACK_DROP_HEIGHT = height * 0.2;
@@ -73,7 +73,7 @@ const navigationDetail = ({navigation}) => {
 };
 let offer;
 const ProductsContainer = (props) => {
-  const [prod,setProd]=useState([]);
+  const [prod,setProd] = useState([]);
   useEffect(()=>{
       const loadOffer = async () =>{
           const data = await axios.post(`${URL}/api/products/`);

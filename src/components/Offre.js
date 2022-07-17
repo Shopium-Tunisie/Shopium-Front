@@ -1,12 +1,12 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 import {View, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {height,width}from '../utils/Dimension';
+import {height,width} from '../utils/Dimension';
 import {Button} from './Button';
 import { Text } from './Text';
-const BUTTON_HEIGHT = height * 0.04;  
+const BUTTON_HEIGHT = height * 0.04;
 const Offre = ({setPromoMessage}) => {
   const navigation = useNavigation();
   const TEXT = 'Découvrir Nos Offres.';

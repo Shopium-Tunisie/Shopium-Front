@@ -7,7 +7,8 @@ import ButtonWithLoader from '../../components/ButtonWithLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {Swipeable} from 'react-native-gesture-handler';
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL  as URL} from '../../config/urls';
+
 const marginBottomItem = 20;
 const paddingItem = 10;
 const imgHeight = 100;

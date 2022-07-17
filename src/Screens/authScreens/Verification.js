@@ -6,13 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React,{useState,useRef,useEffect, useContext} from 'react';
 import {TouchableOpacityBase,View,StyleSheet,Text,KeyboardAvoidingView,TextInput,Dimensions,Keyboard,ToastAndroid, Button} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import IconButton from 'react-native-vector-icons/dist/lib/icon-button';
-import { showSuccess } from '../../tools/helperFunction';
-import FlashMessage, {showMessage, hideMessage} from 'react-native-flash-message';
-import ButtonWithLoader from '../../components/ButtonWithLoader';
-import AuthContext from "../../tools/AuthContext";
-const URL = "http://192.168.155.145:8000";
+import { API_BASE_URL as URL} from '../../config/urls';
+
 // import { Button } from '../../components/Button';
 const inputs = Array(4).fill('');
 let newInputIndex = 0;
@@ -52,28 +47,7 @@ const onSubmitOPT = async()=>{
     const userId = profile;
    try {
     const {data} = await axios.post(`${URL}/user/verify-email`, {otp, userId});
-    // if (data.success){
-    //   // showMessage({
-    //   //   type:'success',
-    //   //   message:`${data.message}`,
-    //   //   backgroundColor:'green',
-    //   //   position:'top',
-    //   // });
-    //    showMessage({
-    //         message: `${data.message}`,
-    //         type: 'success',
-    //       });
-    //   <FlashMessage position="top"/>;
-    //   ToastAndroid.show(`${data.message}`,ToastAndroid.SHORT);
-    // } else {
-    //    showMessage({
-    //     type:'error',
-    //     message:`${data.error}`,
-    //     backgroundColor:'red',
-    //     position:'top',
-    //   });
-    //    ToastAndroid.show(`${data.error}`,ToastAndroid.SHORT);
-    // }
+    
      let token = data.token;
      console.log(token)
     navigation.navigate('login');
@@ -81,7 +55,6 @@ const onSubmitOPT = async()=>{
     return console.log(error);
   }
     }
-
 };
   return  (
   <KeyboardAvoidingView  style={styles.root}>

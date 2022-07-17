@@ -209,10 +209,9 @@ console.log(imageSource);
     redirect: 'follow'
   };
   await fetch("http://37.59.33.135:5000/do", requestOptions)
-    .then(response => response.text())
-    .then(result => alert(result))
+    .then(response => response.json())
+    .then(result => Alert.alert("Merci de Scanner Votre Ticket",` Magasin :${result.name} \n nombre de produits: ${result.products.length}\n Date:${result.date} `))
     .then(resul=>setTicket(resul))
-    .then(res=><Message message={res}/>)
     .catch(error => console.log({errorAPI: error}));
     } catch (error) {
     }
