@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react-native/no-inline-styles */
 import {View,  StyleSheet, Keyboard, FlatList} from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import UserReview from '../../components/UserReview';
 import { Overlay, Rating } from 'react-native-elements';
 import { Input } from '../../components/Input';
@@ -13,6 +14,10 @@ import ProductSwiper from '../../components/ProductSwiper';
 import { FAKEDATA } from '../../utils/FakeData';
 import IconFeather from 'react-native-vector-icons/Feather';
 import { Text } from '../../components/Text';
+import axios from 'axios';
+import { API_BASE_URL as URL } from '../../config/urls';
+import AuthContext from '../../tools/AuthContext';
+import { useEffect } from 'react';
 
 const images = {
   first:
@@ -24,10 +29,10 @@ const images = {
 };
 const renderItem = ({ item }) => (
   <UserReview
-    date={item.reviewDate}
+    CreatedAt={item.CreatedAt}
     ratingValue={item.userReviewStars}
-    image={item.userImage}
-    reviewText={item.userReviewText}
+    image={item.image}
+    text={item.text}
     userName={item.userName}
   />
 );
@@ -101,6 +106,36 @@ const ProductReview = ({route,navigation}) => {
   const [visibleOverLay, setVisibleOverLay] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [data,setData] = useState([]);
+  const {userId} = useContext(AuthContext);
+    let productId = route.params.id;
+  console.log({productId});
+  const addReview = async()=>{
+        try {
+          const response = await axios.post(`${URL}/reviews/add`,{userId:userId,productId:productId,text:comment});
+          if (response){
+            console.log({res:response.data});
+          } else {
+            console.log('error');
+          }
+        } catch (error) {
+          console.log(error);
+        }
+  };
+  const getcommentByproduct = async()=>{
+    try {
+       const res = await axios.post(`${URL}/reviews/reviewByproduct`,{productId:productId});
+       if (res){
+        console.log(res.data);
+        setData(res.data);
+       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getcommentByproduct();
+  }, []);
   return (
     <View style={{
         flex: 1,
@@ -159,19 +194,18 @@ const ProductReview = ({route,navigation}) => {
               }}
             />
             <Input
-              autoFocus={true}
               placeholder="Ecrit quelque chose"
               inputTextColor="black"
               type="multi"
+              value={comment}
               style={{
                 backgroundColor: '#F2F2F2',
                 justifyContent: 'flex-start',
               }}
               maxLength={120}
               height={80}
-              multiLine
-              onChangeText={(text) => {
-                setComment(text);
+              onChangeText={(comment) => {
+                setComment(comment);
               }}
             />
             <Button
@@ -180,16 +214,16 @@ const ProductReview = ({route,navigation}) => {
               theTextColor="white"
               textStyle={{ fontSize: 16 }}
               style={{ height: '16%', alignSelf: 'center' }}
-              onPress={()=>navigation.goBack()}
+              onPress={()=>addReview()}
             />
           </View>
         </TouchableWithoutFeedback>
       </Overlay>
       <FlatList
-        data={FAKEDATA}
+        data={data}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
-        keyExtractor={(item) => item.postID.toString()}
+        keyExtractor={(item) => item._id}
         style={{ marginTop: 40 }}
       />
     </View>

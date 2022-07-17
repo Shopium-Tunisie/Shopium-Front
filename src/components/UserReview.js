@@ -5,7 +5,7 @@ import {Rating} from 'react-native-elements';
 import {Image} from './Image';
 import {Text} from './Text';
 
-const UserReview = ({image, userName, ratingValue, date, reviewText}) => {
+const UserReview = ({image, userName, ratingValue, CreatedAt, text}) => {
   return (
     <View style={styles.container}>
       <View style={styles.firstChild}>
@@ -42,12 +42,12 @@ const UserReview = ({image, userName, ratingValue, date, reviewText}) => {
           </View>
         </View>
         <View style={{height: '100%', justifyContent: 'center'}}>
-          <Text text={date} colorText={'grey'} />
+          <Text text={CreatedAt} colorText={'grey'} />
         </View>
       </View>
       <View style={styles.secondChild}>
         <Text
-          text={reviewText}
+          text={text}
           colorText="grey"
           style={{fontSize: 15, textAlign: 'justify'}}
         />

@@ -86,7 +86,7 @@ const ProductInfo = ({route, navigation}) => {
           theTextColor="white"
           color="dark"
           onPress={() => {
-            navigation.navigate('ReviewScreen');
+            navigation.navigate('ReviewScreen',route.params);
           }}
         />
       </View>

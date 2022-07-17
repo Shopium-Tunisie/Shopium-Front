@@ -51,10 +51,13 @@ const HomeStack = () => {
       <Stack.Screen
         name="ReviewScreen"
         component={ProductReview}
-        options={{
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerTitle: 'Review',
+        options={({route})=>{
+          return {
+            id:route.params.id,
+            headerShown: true,
+            headerTitleAlign: 'center',
+            headerTitle: 'Review',
+          };
         }}
       />
       <Stack.Screen
