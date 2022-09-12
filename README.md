@@ -67,7 +67,7 @@
 ### :camera: Screenshots
   
 <div align="center"> 
-    ![](https://github.com/FaroukGouadria/front-Shopium/blob/master/gifshopium.gif)
+    <img src="gifshopium.gif" alt="shopium_Gif"></img>
 </div>
 
 
