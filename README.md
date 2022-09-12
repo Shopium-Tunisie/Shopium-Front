@@ -120,10 +120,10 @@
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#FF6B6B] <img src="FF6B6B.png" alt="primaryColor" /> |
-| Secondary Color | ![#EA3B3B](https://via.placeholder.com/10/EA3B3B?text=+) #EA3B3B |
-| Accent Color | ![#000000](https://via.placeholder.com/10/ffffff?text=+) #000000 |
-| Text Color | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
+| Primary Color | <img src="FF6B6B.png" alt="primaryColor" /> |
+| Secondary Color | <img src="EA3B3B.png" alt="primaryColor" /> #EA3B3B |
+| Accent Color | <img src="000000.png" alt="primaryColor" /> #000000 |
+| Text Color | <img src="FFFFFF.png" alt="primaryColor" /> #ffffff |
 
 
 <!-- Env Variables -->
@@ -131,7 +131,7 @@
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY`
+`BASE_URL`
 
 `ANOTHER_API_KEY`
 
