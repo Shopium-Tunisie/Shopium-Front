@@ -73,7 +73,6 @@
 
 <details>
   <summary>Client</summary>
-  <br>
   <ul>
     <li>
         <a href="https://reactnative.dev/" target="_blank" rel="noreferrer">React Native </a>
@@ -84,22 +83,18 @@
 
 <details>
   <summary>Server</summary>
-  <br> 
   <ul>
     <li>
       <a href="https://nodejs.org" target="_blank" rel="noreferrer"> Node JS </a>
     </li>
-    <br>
     <li>
      <a href="https://expressjs.com" target="_blank" rel="noreferrer"> Express JS </a>
     </li>
   </ul>
-  <br>
 </details>
 
 <details>
 <summary>Database</summary>
- <br>
    <ul>
     <li>
         <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> MongoDB </a>
@@ -125,10 +120,10 @@
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
+| Primary Color | ![#FF6B6B](https://via.placeholder.com/10/FF6B6B?text=+) #FF6B6B |
+| Secondary Color | ![#EA3B3B](https://via.placeholder.com/10/EA3B3B?text=+) #EA3B3B |
+| Accent Color | ![#000000](https://via.placeholder.com/10/ffffff?text=+) #000000 |
+| Text Color | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
 
 
 <!-- Env Variables -->
