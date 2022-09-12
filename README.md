@@ -60,7 +60,7 @@
 ## :star2: About the Project
 *******************************************************************************
  <div align="center"> 
-  <img src="Desktop - 1.png" alt="screenshot" width="1000" height="1000" />
+  <img src="Desktop - 1.png" alt="screenshot" width="700" height="700" />
 </div>
 
 <!-- Screenshots -->
