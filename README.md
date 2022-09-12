@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="Group 207.png" alt="logo" width="200" height="auto" />
+  <img src="Group 207.png" alt="logo" width="400" height="auto" />
   <h1>Welcome To Shopium App</h1>
   
 <!-- Badges -->
@@ -78,7 +78,7 @@
     <li> React Native</li>
   </ul>
   <br>
-    <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://reactnative.dev/img/header_logo.svg" alt="reactnative" width="40"        height="40"/> </a>
+    <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://www.kindpng.com/picc/m/296-2968253_1460px-react-logo-react-native-logo-png-transparent.png" alt="reactnative" width="40" height="40"/> </a>
 </details>
 
 <details>
