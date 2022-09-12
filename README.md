@@ -129,7 +129,7 @@
 | Primary Color | <img src="FF6B6B.png" alt="primaryColor" /> #FF6B6B |
 | Secondary Color | <img src="EA3B3B.png" alt="primaryColor" /> #EA3B3B |
 | Accent Color | <img src="000000.png" alt="primaryColor" /> #000000 |
-| Text Color | <img src="FFFFFF.png" alt="primaryColor" /> #ffffff |
+| Text Color | <img src="FFFFFF.png" alt="primaryColor" /> #FFFFFF |
 
 
 <!-- Env Variables -->
