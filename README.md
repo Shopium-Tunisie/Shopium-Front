@@ -74,22 +74,38 @@
 <details>
   <summary>Client</summary>
   <br>
-    <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://blog.cellenza.com/wp-content/uploads/2018/04/reactnative.png" alt="reactnative" width="100" height="80"/> </a>
+  <ul>
+    <li>
+        <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://blog.cellenza.com/wp-content/uploads/2018/04/reactnative.png" alt="reactnative" width="200" height="100"/> </a>
+    </li>
+  </ul>
+
 </details>
 
 <details>
   <summary>Server</summary>
   <br> 
-   <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="100" height="80"/> </a>
+  <ul>
+    <li>
+      <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="100" height="80"/> </a>
+    </li>
+    <br>
+    <li>
+     <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="100" height="80"/> </a>
+    </li>
+  </ul>
   <br>
-  <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="100" height="80"/> </a>
-
 </details>
 
 <details>
 <summary>Database</summary>
  <br>
-  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width=100" height="80"/> </a>
+   <ul>
+    <li>
+        <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width=100" height="80"/> </a>
+    </li>
+  </ul>
+
 </details>
 
 <details>
