@@ -60,14 +60,14 @@
 ## :star2: About the Project
 *******************************************************************************
  <div align="center"> 
-  <img src="Desktop - 1.png" alt="screenshot" />
+  <img src="Desktop - 1.png" alt="screenshot" width="1000" height="1000" />
 </div>
 
 <!-- Screenshots -->
 ### :camera: Screenshots
   
 <div align="center"> 
-  <img src="Desktop - 1.png" alt="screenshot" />
+  
 </div>
 
 
