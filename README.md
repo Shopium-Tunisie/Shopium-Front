@@ -3,6 +3,9 @@
   <img src="Group 207.png" alt="logo" width="400" height="auto" />
   <h1>Welcome To Shopium App</h1>
   
+  
+  <h1 color="#FF6B6B">la première application du remboursement de courses en Tunisie</h1>
+  
 <!-- Badges -->
 <!-- <p>
   <a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
