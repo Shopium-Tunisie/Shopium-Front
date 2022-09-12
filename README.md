@@ -120,7 +120,7 @@
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | (https://via.placeholder.com/150/0000FF/808080?Text=Digital.com) |
+| Primary Color | ![#FF6B6B](https://via.placeholder.com/10/FF6B6B) |
 | Secondary Color | ![#EA3B3B](https://via.placeholder.com/10/EA3B3B?text=+) #EA3B3B |
 | Accent Color | ![#000000](https://via.placeholder.com/10/ffffff?text=+) #000000 |
 | Text Color | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
