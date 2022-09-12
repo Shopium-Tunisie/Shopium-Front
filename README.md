@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="Group 207.png" alt="logo" width="400" height="auto" />
+  <img src="Group 207.png" alt="logo" width="200" height="auto" />
   <h1>Welcome To Shopium App</h1>
   
 <!-- Badges -->
@@ -74,33 +74,22 @@
 <details>
   <summary>Client</summary>
   <br>
-  <ul>
-    <li> React Native</li>
-  </ul>
-  <br>
-    <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://www.kindpng.com/picc/m/296-2968253_1460px-react-logo-react-native-logo-png-transparent.png" alt="reactnative" width="40" height="40"/> </a>
+    <a href="https://reactnative.dev/" target="_blank" rel="noreferrer"> <img src="https://blog.cellenza.com/wp-content/uploads/2018/04/reactnative.png" alt="reactnative" width="100" height="80"/> </a>
 </details>
 
 <details>
   <summary>Server</summary>
   <br> 
-  <p>Node JS</p>
+   <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="100" height="80"/> </a>
   <br>
-   <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>
-  <br>
-  <p> Express JS</p> 
-  <br>
-  <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>
+  <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="100" height="80"/> </a>
 
 </details>
 
 <details>
 <summary>Database</summary>
  <br>
-  <p>MongoDB</p> 
- 
-  <br>
-  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a>
+  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width=100" height="80"/> </a>
 </details>
 
 <details>
