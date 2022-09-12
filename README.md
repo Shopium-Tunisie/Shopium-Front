@@ -120,7 +120,7 @@
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#FF6B6B](https://via.placeholder.com/10/FF6B6B) |
+| Primary Color | ![#FF6B6B] <img src="FF6B6B.png" alt="primaryColor" /> |
 | Secondary Color | ![#EA3B3B](https://via.placeholder.com/10/EA3B3B?text=+) #EA3B3B |
 | Accent Color | ![#000000](https://via.placeholder.com/10/ffffff?text=+) #000000 |
 | Text Color | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
