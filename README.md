@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="Group 207.png" alt="logo" width="200" height="auto" />
+  <img src="Group 207.png" alt="logo" width="400" height="auto" />
   <h1>Welcome To Shopium App</h1>
   
 <!-- Badges -->
@@ -58,13 +58,16 @@
 
 <!-- About the Project -->
 ## :star2: About the Project
-
+*******************************************************************************
+ <div align="center"> 
+  <img src="Desktop - 1.png" alt="screenshot" />
+</div>
 
 <!-- Screenshots -->
 ### :camera: Screenshots
-
+  
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="Desktop - 1.png" alt="screenshot" />
 </div>
 
 
@@ -120,7 +123,7 @@
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | <img src="FF6B6B.png" alt="primaryColor" /> |
+| Primary Color | <img src="FF6B6B.png" alt="primaryColor" /> #FF6B6B |
 | Secondary Color | <img src="EA3B3B.png" alt="primaryColor" /> #EA3B3B |
 | Accent Color | <img src="000000.png" alt="primaryColor" /> #000000 |
 | Text Color | <img src="FFFFFF.png" alt="primaryColor" /> #ffffff |
@@ -133,7 +136,11 @@ To run this project, you will need to add the following environment variables to
 
 `BASE_URL`
 
-`ANOTHER_API_KEY`
+`CLOUD_NAME`
+
+`API_KEY_CLOUDINAY`
+
+`URL_CLOUDINARY`
 
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
