@@ -4,9 +4,9 @@
   <h1>Welcome To Shopium App</h1>
   
   
-  <h1 >la première application du remboursement de courses en Tunisie :1st_place_medal: </h1> 
-  <br>
-  <h1> :receipt: :credit_card: :moneybag: </h1> 
+  <h1 >La première application du remboursement de courses en Tunisie :1st_place_medal: </h1> 
+  <br/>
+  <h1 align="center"> :receipt: :credit_card: :moneybag: </h1> 
   
 <!-- Badges -->
 <!-- <p>
