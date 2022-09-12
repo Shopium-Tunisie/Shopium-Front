@@ -58,14 +58,14 @@
 
 <!-- About the Project -->
 ## :star2: About the Project
-*******************************************************************************
+<p>*******************************************************************************</p>
  <div align="center"> 
   <img src="Desktop - 1.png" alt="screenshot" width="700" height="700" />
 </div>
 
 <!-- Screenshots -->
 ### :camera: Screenshots
-  
+  <p>*******************************************************************************</p>
 <div align="center"> 
     <img src="gifshopium.gif" alt="shopium_Gif"></img>
 </div>
