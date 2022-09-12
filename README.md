@@ -151,7 +151,7 @@ To run this project, you will need to add the following environment variables to
 This project uses Yarn as package manager
 
 ```bash
- npm install --global yarn
+ npm install --global
 ```
 
 <!-- Installation -->
@@ -160,7 +160,7 @@ This project uses Yarn as package manager
 Install my-project with npm
 
 ```bash
-  yarn install my-project
+  npm install my-project
   cd my-project
 ```
    
@@ -170,7 +170,7 @@ Install my-project with npm
 To run tests, run the following command
 
 ```bash
-  yarn test test
+  npm test test
 ```
 
 <!-- Run Locally -->
@@ -179,7 +179,7 @@ To run tests, run the following command
 Clone the project
 
 ```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
+  git clone https://github.com/FaroukGouadria/front-Shopium.git
 ```
 
 Go to the project directory
@@ -191,13 +191,13 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  yarn install
+  npm install
 ```
 
 Start the server
 
 ```bash
-  yarn start
+  npm start
 ```
 
 
