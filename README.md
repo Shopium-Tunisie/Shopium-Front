@@ -63,7 +63,7 @@
 ## :star2: About the Project
 <p>*******************************************************************************</p>
  <div align="center"> 
-  <img src="Desktop - 1.png" alt="screenshot" width="600" height="500" />
+  <p><span>Shopium</span> est unde application de cashback </p>
 </div>
 
 <!-- Screenshots -->
