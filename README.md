@@ -117,9 +117,12 @@
 <!-- Features -->
 ### :dart: Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Authentification
+- Vérification Email
+- Mise a jour Porfile
+- Ajouter RIB
+- Scanner Carte Fidélité
+- Scanner Tickets ou Reçu de caisse
 
 <!-- Color Reference -->
 ### :art: Color Reference
