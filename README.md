@@ -62,8 +62,9 @@
 <!-- About the Project -->
 ## :star2: About the Project
 <p>*******************************************************************************</p>
- <div align="center"> 
-  <p><span>Shopium</span> est unde application de cashback </p>
+ <div> 
+  <p><span>Shopium</span> est une application de cashback </p>
+  <p>Shopium vous propose de profiter de remises lors de vos achats en magasin de manière simple et efficace. Il vous suffit de trouver les produits qui vous plaisent, de les acheter en magasin, de prendre une photo de votre reçu et de recevoir votre remboursement ! </p>
 </div>
 
 <!-- Screenshots -->
