@@ -259,9 +259,9 @@ Distributed under the no License. See LICENSE.txt for more information.
 <!-- Contact -->
 ## :handshake: Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Your Name - [@Shopium](https://twitter.com/Shopium) - shopium.local@gmail.com
 
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
+Project Link: [https://github.com/FaroukGouadria/front-Shopium.git](https://github.com/FaroukGouadria/front-Shopium.git)
 
 
 
