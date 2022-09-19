@@ -112,6 +112,7 @@
  
 </details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Features -->
 ### :dart: Features
 
@@ -122,6 +123,7 @@
 - Scanner Carte Fidélité
 - Scanner Tickets ou Reçu de caisse
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Color Reference -->
 ### :art: Color Reference
 
@@ -133,6 +135,7 @@
 | Text Color | <img src="FFFFFF.png" alt="primaryColor" /> #FFFFFF |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Env Variables -->
 ### :key: Environment Variables
 
@@ -146,9 +149,10 @@ To run this project, you will need to add the following environment variables to
 
 `URL_CLOUDINARY`
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Prerequisites -->
 ### :bangbang: Prerequisites
 
@@ -168,6 +172,7 @@ verifier npm version
  npm -v
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Installation -->
 ### :gear: Installation
 
@@ -206,6 +211,7 @@ Start the server
   npx react-native run-android
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Usage -->
 ## :eyes: Usage
 
