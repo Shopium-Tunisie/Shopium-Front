@@ -47,13 +47,9 @@
 - [Getting Started](#toolbox-getting-started)
   * [Prerequisites](#bangbang-prerequisites)
   * [Installation](#gear-installation)
-  * [Running Tests](#test_tube-running-tests)
   * [Run Locally](#running-run-locally)
-  * [Deployment](#triangular_flag_on_post-deployment)
 - [Usage](#eyes-usage)
 - [Roadmap](#compass-roadmap)
-- [FAQ](#grey_question-faq)
-- [License](#warning-license)
 - [Contact](#handshake-contact)
 
 
@@ -155,12 +151,21 @@ To run this project, you will need to add the following environment variables to
 <!-- Prerequisites -->
 ### :bangbang: Prerequisites
 
-This project uses Yarn as package manager
+This project uses NPM (Node package manager) as package manager
 
 ```bash
- npm install --global
+https://nodejs.org/en/download/
 ```
+verifier Node version 
 
+```bash
+ node -v
+```
+verifier npm version 
+
+```bash
+ npm -v
+```
 <!-- Installation -->
 ### :gear: Installation
 
@@ -172,15 +177,7 @@ Install my-project with npm
 ```
    
 <!-- Running Tests -->
-### :test_tube: Running Tests
 
-To run tests, run the following command
-
-```bash
-  npm test test
-```
-
-<!-- Run Locally -->
 ### :running: Run Locally
 
 Clone the project
@@ -204,20 +201,8 @@ Install dependencies
 Start the server
 
 ```bash
-  npm start
+  npx react-native run-android
 ```
-
-
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
-
-To deploy this project run
-
-```bash
-  yarn deploy
-```
-
-
 <!-- Usage -->
 ## :eyes: Usage
 
@@ -235,26 +220,11 @@ function App() {
 <!-- Roadmap -->
 ## :compass: Roadmap
 
-* [x] Todo 1
-* [ ] Todo 2
-
-<!-- FAQ -->
-## :grey_question: FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
-
-<!-- License -->
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
-
+* [x] Authentification
+* [x] Gestion des utilisateurs 
+* [x] Module Scan Tickets
+* [ ] Remboursement
+* [ ] Notification temps réel
 
 <!-- Contact -->
 ## :handshake: Contact
