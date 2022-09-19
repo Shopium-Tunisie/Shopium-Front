@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 <div align="center">
 
   <img src="Group 207.png" alt="logo" width="400" height="auto" />
@@ -110,7 +111,7 @@
 <summary>DevOps</summary>
  
 </details>
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Features -->
 ### :dart: Features
 
@@ -120,7 +121,7 @@
 - Ajouter RIB
 - Scanner Carte Fidélité
 - Scanner Tickets ou Reçu de caisse
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Color Reference -->
 ### :art: Color Reference
 
@@ -131,7 +132,7 @@
 | Accent Color | <img src="000000.png" alt="primaryColor" /> #000000 |
 | Text Color | <img src="FFFFFF.png" alt="primaryColor" /> #FFFFFF |
 
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Env Variables -->
 ### :key: Environment Variables
 
@@ -144,10 +145,10 @@ To run this project, you will need to add the following environment variables to
 `API_KEY_CLOUDINAY`
 
 `URL_CLOUDINARY`
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Prerequisites -->
 ### :bangbang: Prerequisites
 
@@ -166,6 +167,7 @@ verifier npm version
 ```bash
  npm -v
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Installation -->
 ### :gear: Installation
 
@@ -176,7 +178,7 @@ Install my-project with npm
   cd my-project
 ```
    
-<!-- Running Tests -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### :running: Run Locally
 
@@ -203,6 +205,7 @@ Start the server
 ```bash
   npx react-native run-android
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Usage -->
 ## :eyes: Usage
 
@@ -216,6 +219,7 @@ function App() {
   return <Component />
 }
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Roadmap -->
 ## :compass: Roadmap
@@ -226,6 +230,7 @@ function App() {
 * [ ] Remboursement
 * [ ] Notification temps réel
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Contact -->
 ## :handshake: Contact
 
@@ -233,5 +238,6 @@ Your Name - [@Shopium](https://twitter.com/Shopium) - shopium.local@gmail.com
 
 Project Link: [https://github.com/FaroukGouadria/front-Shopium.git](https://github.com/FaroukGouadria/front-Shopium.git)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
