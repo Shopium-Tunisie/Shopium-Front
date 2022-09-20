@@ -223,7 +223,9 @@ mise en place d'une API externe développée avec intelligence artificielle con�
 <br>
 <h2>Resultat</h2>
 <br>
+
 ```javascript
+
   {
     "date": "26/06/2022",
     "name": "Monoprix",
