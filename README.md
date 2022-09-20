@@ -215,14 +215,40 @@ Start the server
 <!-- Usage -->
 ## :eyes: Usage
 
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
+mise en place d'une API externe développée avec intelligence artificielle conçue pour Shopium afin de scanner les reçus de vente des utilisateurs pour l'extraction et la classification des données.<a href="https://github.com/firas122/TicketOCR">Plus de détails</a>
+<br>
+<h2>Exemple :</h2>
 
-
+ <img src="https://res.cloudinary.com/frouga/image/upload/v1662130396/kiicjme56ft293cdlzrv.jpg" alt="logo" width="400" height="auto" />
+<br>
+<h2>Resultat</h2>
+<br>
 ```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
+  {
+    "date": "26/06/2022",
+    "name": "Monoprix",
+    "products": [
+        {
+            "pname": "Huile de mais SAFI ",
+            "pquantity": 1,
+            "ptotal": 7730.0,
+            "pupri": 7730.0
+        },
+        {
+            "pname": "D. Timbre LF_2022",
+            "pquantity": 1,
+            "ptotal": 100.0,
+            "pupri": 100.0
+        },
+        {
+            "pname": "PECHE PLATE DE CHI ",
+            "pquantity": 1,
+            "ptotal": 2195.0,
+            "pupri": 2195.0
+        }
+    ],
+    "time": "13:21",
+    "total": 100025.0
 }
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
