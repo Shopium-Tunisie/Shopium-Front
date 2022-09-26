@@ -67,22 +67,26 @@
 ### :camera: Screenshots
   <p>Cette section présente une capture d'écran de notre application </p>
   <br>
-  <p> LOGIN & SIGNUP </p>
+  <p align = "center"> LOGIN & SIGNUP </p>
 <div align="center"  > 
     <img src="authentification.jpg" alt="authentification" width="300" height="500"></img>
         <img src="signUP.jpg" alt="signup" width="300" height="500"></img>
 </div>
- <p> HOME & LIkes </p>
+ <br>
+ <p align = "center"> HOME & LIKES </p>
+
 <div align="center"  > 
     <img src="home.jpeg" alt="home" width="300" height="500"></img>
         <img src="favorite.jpeg" alt="favorites" width="300" height="500"></img>
 </div>
- <p> DETAILS & REVIEWS  </p>
+ <br>
+ <p align = "center" font-weight="bold"> DETAILS & REVIEWS  </p>
 <div align="center"  > 
     <img src="details.jpeg" alt="details" width="300" height="500"></img>
         <img src="reviews.jpeg" alt="reviews" width="300" height="500"></img>
 </div>
- <p > SCAN TICKETS & STATUS  </p>
+ <br>
+ <p align = "center"> SCAN TICKETS & STATUS  </p>
 <div align="center"  > 
     <img src="scan.jpeg" alt="scan" width="300" height="500"></img>
         <img src="etats.jpeg" alt="etats" width="300" height="500"></img>
