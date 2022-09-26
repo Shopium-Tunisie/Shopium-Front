@@ -66,9 +66,27 @@
 
 <!-- Screenshots -->
 ### :camera: Screenshots
-  <p>*******************************************************************************</p>
-<div align="center"> 
-    <img src="gifshopium.gif" alt="shopium_Gif"></img>
+  <p>Cette section présente une capture d'écran de notre application </p>
+  
+  <p> LOGIN & SIGNUP </p>
+<div align="center"  > 
+    <img src="authentification.jpg" alt="authentification" width="300" height="500"></img>
+        <img src="signUP.jpg" alt="signup" width="300" height="500"></img>
+</div>
+ <p> HOME & LIkes </p>
+<div align="center"  > 
+    <img src="home.jpeg" alt="home" width="300" height="500"></img>
+        <img src="favorite.jpeg" alt="favorites" width="300" height="500"></img>
+</div>
+ <p> DETAILS & REVIEWS  </p>
+<div align="center"  > 
+    <img src="details.jpeg" alt="details" width="300" height="500"></img>
+        <img src="reviews.jpeg" alt="reviews" width="300" height="500"></img>
+</div>
+ <p > SCAN TICKETS & STATUS  </p>
+<div align="center"  > 
+    <img src="scan.jpeg" alt="scan" width="300" height="500"></img>
+        <img src="etats.jpeg" alt="etats" width="300" height="500"></img>
 </div>
 
 
@@ -109,7 +127,10 @@
 
 <details>
 <summary>DevOps</summary>
- 
+  <ul>
+    <li>
+        <a href="https://www.heroku.com/" target="_blank" rel="noreferrer"> Heroku </a>
+    </li>
 </details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
